@@ -8,11 +8,12 @@ import Products from "./components/products/Products";
 import Product from "./components/product/Product";
 import Categories from "./components/categories/Categories";
 import Cart from "./components/cart/Cart";
+import Footer from "./components/footer/Footer";
 import "./App.css";
 
 function App() {
   return (
-    <div>
+    <div className="appContainer">
       <NavbarComponent />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -23,6 +24,7 @@ function App() {
         <Route path="/categories" element={<Categories />} />
         <Route path="/cart" element={<Cart />} />
       </Routes>
+      <Footer />
     </div>
   );
 }
