@@ -1,0 +1,17 @@
+.footerContainer {
+  position: fixed;
+  display: flex;
+  width: 100%;
+  height: max-content;
+  justify-content: center;
+  align-items: center;
+  padding: 10 20px;
+  background-color: black;
+  bottom: 0;
+}
+
+p {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+}

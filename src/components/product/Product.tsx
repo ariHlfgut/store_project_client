@@ -14,7 +14,7 @@ interface ProductProps {
     model: string;
 }
 
-const ProductDetails: React.FC<ProductProps> = (props: ProductProps) => {
+const Product: React.FC<ProductProps> = (props: ProductProps) => {
     return (
         <div  className='product_details_container'>
             <div>{props.name}</div>
@@ -30,4 +30,4 @@ const ProductDetails: React.FC<ProductProps> = (props: ProductProps) => {
         </div>  
     )
 }
-export default ProductDetails
+export default Product

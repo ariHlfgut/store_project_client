@@ -1,11 +1,29 @@
-import TestData from "./Component/Categories/test"
+import React from "react";
+import Home from "./components/home/Home";
+import NavbarComponent from "./components/navbarComponent/NavbarComponent";
+import { Routes, Route } from "react-router-dom";
+import Login from "./components/login/Login";
+import Sign_up from "./components/sign_up/Sign_up";
+import Products from "./components/products/Products";
+import Product from "./components/product/Product";
+import Cart from "./components/cart/Cart";
+import Footer from "./components/footer/Footer";
+import "./App.css";
 
 function App() {
-  
   return (
-    <>
-    <TestData />
-    </>
-  )
+    <div className="appContainer">
+      <NavbarComponent />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/sign up" element={<Sign_up />} />
+        {/* <Route path="/products" element={<Products />} />
+        <Route path="/product" element={<Product />} /> */}
+        <Route path="/cart" element={<Cart />} />
+      </Routes>
+      <Footer />
+    </div>
+  );
 }
-export default App
+export default App;
