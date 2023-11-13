@@ -6,7 +6,6 @@ import Login from "./components/login/Login";
 import Sign_up from "./components/sign_up/Sign_up";
 import Products from "./components/products/Products";
 import Product from "./components/product/Product";
-import Categories from "./components/categories/Categories";
 import Cart from "./components/cart/Cart";
 import Footer from "./components/footer/Footer";
 import "./App.css";
@@ -19,9 +18,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/sign up" element={<Sign_up />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/product" element={<Product />} />
-        <Route path="/categories" element={<Categories />} />
+        {/* <Route path="/products" element={<Products />} />
+        <Route path="/product" element={<Product />} /> */}
         <Route path="/cart" element={<Cart />} />
       </Routes>
       <Footer />

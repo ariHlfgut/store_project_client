@@ -21,9 +21,6 @@ export default function NavbarComponent() {
           <Nav.Link className="navLink" to={"/products"} as={NavLink}>
             products
           </Nav.Link>
-          <Nav.Link className="navLink" to={"/categories"} as={NavLink}>
-            categories
-          </Nav.Link>
           <Nav.Link className="navLink" to={"/cart"} as={NavLink}>
             <ShoppingCartIcon />
           </Nav.Link>
