@@ -26,6 +26,7 @@ const ProductDetails: React.FC<ProductProps> = (props: ProductProps) => {
             <div>{props.color}</div>
             <div>{props.units_in_stock}</div>
             <div>{props.rate}</div>
+            <button>add to cart</button>
         </div>  
     )
 }

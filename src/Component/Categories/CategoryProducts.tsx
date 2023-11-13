@@ -15,7 +15,7 @@ interface ProductProps {
     model: string;
 }
 
-const Product: React.FC<ProductProps> = (props: ProductProps) => {
+const CategoryProducts: React.FC<ProductProps> = (props: ProductProps) => {
     const handelClick = () => {
         // Here you need to register the router on the page of the extended details of the clicked product
     }
@@ -31,4 +31,4 @@ const Product: React.FC<ProductProps> = (props: ProductProps) => {
         </div>  
     );
 };
-export default Product;
+export default CategoryProducts;
