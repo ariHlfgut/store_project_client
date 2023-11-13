@@ -2,6 +2,7 @@ import { Nav, Navbar } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import "./navbarComponent.css";
 import React from "react";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 export default function NavbarComponent() {
   return (
@@ -24,7 +25,7 @@ export default function NavbarComponent() {
             categories
           </Nav.Link>
           <Nav.Link className="navLink" to={"/cart"} as={NavLink}>
-            cart
+            <ShoppingCartIcon />
           </Nav.Link>
         </Nav>
       </Navbar>
