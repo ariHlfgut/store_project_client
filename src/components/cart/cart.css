@@ -1,0 +1,24 @@
+.cartContainer {
+  border-radius: 20px;
+  width: 600px;
+  height: 150px;
+  display: flex;
+}
+
+.cartImage {
+  border: 0.2px solid black;
+  border-radius: 20px;
+  width: 200px;
+  height: 150px;
+}
+
+.cartDetails {
+  display: flex;
+  flex-direction: column;
+}
+
+.description {
+  width: 40px;
+  height: 20px;
+  background-color: lightgray;
+}
