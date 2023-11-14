@@ -28,11 +28,11 @@ export default function Cart() {
 
         <div className="quantity">
           <button className="plus-btn" type="button" name="button">
-            <AddIcon />
+            <AddIcon fontSize="small" />
           </button>
           <input type="text" name="name" value={"1"} />
           <button className="minus-btn" type="button" name="button">
-            <RemoveIcon />
+            <RemoveIcon fontSize="small" />
           </button>
         </div>
 
@@ -60,11 +60,11 @@ export default function Cart() {
 
         <div className="quantity">
           <button className="plus-btn" type="button" name="button">
-            <AddIcon />
+            <AddIcon fontSize="small" />
           </button>
           <input type="text" name="name" value={"1"} />
           <button className="minus-btn" type="button" name="button">
-            <RemoveIcon />
+            <RemoveIcon fontSize="small" />
           </button>
         </div>
 
