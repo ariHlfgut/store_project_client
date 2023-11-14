@@ -1,5 +1,6 @@
 import "./products.css";
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 interface ProductProps {
   id: string;
