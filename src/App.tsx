@@ -9,11 +9,13 @@ import Product from "./components/product/Product";
 import Cart from "./components/cart/Cart";
 import Footer from "./components/footer/Footer";
 import "./App.css";
+import Header from "./components/header/Header";
 
 
 function App() {
   return (
     <div className="appContainer">
+      <Header />
       <NavbarComponent />
       <Routes>
         <Route path="/" element={<Home />} />
