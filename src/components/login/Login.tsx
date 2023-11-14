@@ -1,8 +1,11 @@
+"use client";
 import { TextField, Button } from "@mui/material";
 import { TSignUpSchema, signUpSchema } from "../../lib/types";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React from "react";
 import { useForm, type FieldValues } from "react-hook-form";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import React from "react";
 import "./login.css";
 
 export default function Login() {
@@ -17,39 +20,41 @@ export default function Login() {
   });
 
   const onSubmit = async (data: TSignUpSchema) => {
-    const response = await fetch(
-      "https://b2mfc7l4-8181.euw.devtunnels.ms/api/users/login",
-      {
-        method: "GET",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    const responseData = await response.json();
-    if (!response.ok) {
-      alert("Submitting form failed!");
-      return;
-    }
+    try {
+      const response = await axios.post(
+        "https://api-service-store-projects.onrender.com/api/users/login",
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-    if (responseData.errors) {
-      const errors = responseData.errors;
-      if (errors.email) {
-        setError("email", {
-          type: "server",
-          message: errors.email,
-        });
-      } else if (errors.password) {
-        setError("password", {
-          type: "server",
-          message: errors.password,
-        });
-      } else {
-        alert("Something went wrong!");
+      if (!response.data.ok) {
+        alert("Submitting form failed!");
+        return;
       }
+      if (response.data.errors) {
+        const serverErrors = response.data.errors;
+        if (serverErrors.email) {
+          setError("email", {
+            type: "server",
+            message: serverErrors.email,
+          });
+        } else if (serverErrors.password) {
+          setError("password", {
+            type: "server",
+            message: serverErrors.password,
+          });
+        } else {
+          alert("Something went wrong!");
+        }
+      }
+    } catch (error) {
+      console.error("An error occurred while submitting the form:", error);
+      alert("An error occurred while submitting the form");
     }
-    reset();
   };
 
   return (
@@ -77,6 +82,12 @@ export default function Login() {
       <Button disabled={isSubmitting} type="submit" variant="contained">
         LOGIN
       </Button>
+      <p className="p">
+        you dont have account?{" "}
+        <Link className="sign" to={"/sign up"}>
+          sign up
+        </Link>
+      </p>
     </form>
   );
 }

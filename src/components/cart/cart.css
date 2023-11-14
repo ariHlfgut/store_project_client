@@ -1,0 +1,34 @@
+.cartContainer {
+  border-radius: 20px;
+  width: 600px;
+  height: 150px;
+  display: flex;
+  margin: auto;
+}
+
+.cartImage {
+  border: 0.2px solid black;
+  border-radius: 20px;
+  width: 200px;
+  height: 150px;
+}
+
+.cartDetails {
+  display: flex;
+  flex-direction: column;
+}
+
+.description {
+  width: 80px;
+  height: 20px;
+  background-color: lightgray;
+  border: 0.1px solid lightgray;
+  border-radius: 25px;
+  text-align: center;
+  padding: 5px;
+}
+.paymentDetails {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

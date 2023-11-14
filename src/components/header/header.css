@@ -2,18 +2,8 @@
   position: sticky;
   top: 0;
 }
-/* .navbar {
-  background-color: rgb(229, 1, 1);
-}
 
-.left-margin {
-  margin-left: 100px;
-}
-
-.navLink {
-  color: white;
-  font-size: 20px;
-  font-weight: bold;
+.icon {
   text-decoration: none;
-  margin-right: 20px;
-} */
+  color: wheat;
+}

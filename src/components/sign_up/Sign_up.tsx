@@ -2,8 +2,7 @@ import { TextField, Button } from "@mui/material";
 import { TSignUpSchema, signUpSchema } from "../../lib/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
-import { useForm, type FieldValues } from "react-hook-form";
-import axios from "axios";
+import { useForm } from "react-hook-form";
 import "./Sign_up.css";
 
 export default function Sign_up() {
