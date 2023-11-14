@@ -1,7 +1,8 @@
 import "./products.css";
-import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import ProductsFather from "./ProductsMap";
+import React from "react";
+import "./products.css";
 
 export default function Products() {
   return (
