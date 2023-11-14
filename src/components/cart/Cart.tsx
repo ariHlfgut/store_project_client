@@ -1,3 +1,4 @@
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import React from "react";
 import "./cart.css";
 
@@ -5,9 +6,16 @@ export default function Cart() {
   return (
     <div className="cartContainer">
       <div className="cartDetails">
-        <h2>bird</h2>
+        <p>bird</p>
         <div className="description">
-          <p>gold</p>
+          <ArrowBackIosIcon fontSize="small" />
+          gold
+        </div>
+        <div className="paymentDetails">
+          <div className="price">50</div>
+          <div className="add">+</div>
+          <div className="total">total</div>
+          <div className="remove">-</div>
         </div>
       </div>
       <img

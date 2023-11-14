@@ -3,6 +3,7 @@
   width: 600px;
   height: 150px;
   display: flex;
+  margin: auto;
 }
 
 .cartImage {
@@ -18,7 +19,16 @@
 }
 
 .description {
-  width: 40px;
+  width: 80px;
   height: 20px;
   background-color: lightgray;
+  border: 0.1px solid lightgray;
+  border-radius: 25px;
+  text-align: center;
+  padding: 5px;
+}
+.paymentDetails {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
