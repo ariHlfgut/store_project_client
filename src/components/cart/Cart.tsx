@@ -1,28 +1,76 @@
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 import React from "react";
 import "./cart.css";
-
 export default function Cart() {
   return (
-    <div className="cartContainer">
-      <div className="cartDetails">
-        <p>bird</p>
+    <div className="shopping-cart">
+      <div className="title">Shopping Bag</div>
+      <div className="item">
+        <div className="buttons">
+          <span className="delete-btn"></span>
+          <span className="like-btn"></span>
+        </div>
+
+        <div className="image">
+          <img
+            className="cart-image"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2dGloKNQMlquVSMCwtLG1NK3MAeV9rSjp2Q&usqp=CAU"
+            alt=""
+          />
+        </div>
+
         <div className="description">
-          <ArrowBackIosIcon fontSize="small" />
-          gold
+          <span>Common Projects</span>
+          <span>Bball High</span>
+          <span>White</span>
         </div>
-        <div className="paymentDetails">
-          <div className="price">50</div>
-          <div className="add">+</div>
-          <div className="total">total</div>
-          <div className="remove">-</div>
+
+        <div className="quantity">
+          <button className="plus-btn" type="button" name="button">
+            <AddIcon />
+          </button>
+          <input type="text" name="name" value={"1"} />
+          <button className="minus-btn" type="button" name="button">
+            <RemoveIcon />
+          </button>
         </div>
+
+        <div className="total-price">$549</div>
       </div>
-      <img
-        className="cartImage"
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2dGloKNQMlquVSMCwtLG1NK3MAeV9rSjp2Q&usqp=CAU"
-        alt="cart"
-      />
+      <div className="item">
+        <div className="buttons">
+          <span className="delete-btn"></span>
+          <span className="like-btn"></span>
+        </div>
+
+        <div className="image">
+          <img
+            className="cart-image"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2dGloKNQMlquVSMCwtLG1NK3MAeV9rSjp2Q&usqp=CAU"
+            alt=""
+          />
+        </div>
+
+        <div className="description">
+          <span>Common Projects</span>
+          <span>Bball High</span>
+          <span>White</span>
+        </div>
+
+        <div className="quantity">
+          <button className="plus-btn" type="button" name="button">
+            <AddIcon />
+          </button>
+          <input type="text" name="name" value={"1"} />
+          <button className="minus-btn" type="button" name="button">
+            <RemoveIcon />
+          </button>
+        </div>
+
+        <div className="total-price">$549</div>
+      </div>
+      <div className="total-price">$349</div>
     </div>
   );
 }
