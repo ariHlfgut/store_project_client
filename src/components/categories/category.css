@@ -1,0 +1,20 @@
+.category_style {
+    display: flex;
+    width: 300px;
+    height: 400px;
+    border: 1px solid black;
+    border-radius: 33px;
+    margin: 5px;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .img_style_category {
+     width: 250px;
+     height: 250px;
+  }
+ 
+  .test {
+    display: flex;
+    flex-wrap: wrap;
+  }

@@ -10,6 +10,7 @@ import Footer from "./components/Footer/Footer";
 import "./App.css";
 import Header from "./components/header/Header";
 
+
 function App() {
   return (
     <div className="appContainer">
@@ -17,7 +18,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/sign up" element={<Sign_up />} />
+        <Route path="/sign up" element={<Sign_up />} 
+        <Route path="/product/:id" element={<Product />} />
+        <Route path="/products/category/:id" element= {<Products />}/>
         <Route path="/cart" element={<Cart />} />
       </Routes>
       <Footer />
