@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 interface CategoryType {
-  id: string;
+  _id: string;
   name: string;
   img_url: string;
   count_click: number;
@@ -39,17 +39,13 @@ export default function Categories() {
       <h1>categories</h1>
       <div>
         {categories.map((category) => (
-          <Link
-            key={category.id}
-            className="navLink"
-            to={`/products/category/${category.id}`}
-          >
+         <Link key={category._id} className="navLink" to={`/category/${category._id}`}>
+          {/* {`/products/category/${category.id}`}> */}
             <Category
-              id={category.id}
-              name={category.name}
-              img_url={category.img_url}
-              count_click={category.count_click}
-            />
+                id = {category._id}
+                name= {category.name}
+                img_url= {category.img_url}
+                count_click={category.count_click}/>
           </Link>
         ))}
       </div>

@@ -1,12 +1,11 @@
-import "./products.css";
 import React from "react";
 import Products from "./ProductsView";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-
+import "./productsMap.css";
 interface ProductProps {
-  id: string;
+  _id: string;
   category_id: string;
   name: string;
   title: string;
@@ -21,15 +20,17 @@ interface ProductProps {
 }
 
 const ProductsFather = () => {
+  const prams = useParams();
   const [categoryProducts, setCategoryProducts] = useState<ProductProps[]>([]);
 
   useEffect(() => {
     const fetchProductsByCategory = async () => {
       try {
         const response = await axios.get(
-          `https://b2mfc7l4-8181.euw.devtunnels.ms/api/products`
-        );
+          `https://api-service-store-projects.onrender.com/api/categoryes/${prams.id}`
+        ); // You need to create an endpoint that sends to products/category_id
         setCategoryProducts(response.data);
+        console.log(response.data[0]._id);
       } catch (error) {
         console.log("Error fetching products by category", error);
       }
@@ -38,15 +39,15 @@ const ProductsFather = () => {
   }, []);
 
   return (
-    <div>
+    <div className="container_products">
       {categoryProducts.map((product) => (
         <Link
-          key={product.id}
+          key={product._id}
           className="navLink"
-          to={`/product/${product.id}`}
+          to={`/product/${product._id}`}
         >
           <Products
-            id={product.id}
+            id={product._id}
             category_id={product.category_id}
             name={product.name}
             title={product.title}

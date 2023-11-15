@@ -1,0 +1,8 @@
+.container_products {
+  margin-left: 100px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
