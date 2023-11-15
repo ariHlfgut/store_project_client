@@ -1,4 +1,4 @@
- .product_container {
+ /* .product_container {
    display: flex;
    width: 300px;
    height: 400px;
@@ -12,5 +12,17 @@
  .img_style {
     width: 250px;
     height: 250px;
- }
+ } */
+
+
+
+.root {
+  max-width: 345;
+}
+
+.media {
+  height: 0;
+  padding-top: 56.25%; /* Remove quotes */
+}
+
 

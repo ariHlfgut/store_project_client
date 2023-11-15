@@ -4,7 +4,7 @@ import NavbarComponent from "./components/navbarComponent/NavbarComponent";
 import { Routes, Route } from "react-router-dom";
 import Login from "./components/login/Login";
 import Sign_up from "./components/sign_up/Sign_up";
-import Products from "./components/products/Products";
+import Products from "./components/products/products";
 import Product from "./components/product/Product";
 import Cart from "./components/cart/Cart";
 import Footer from "./components/footer/Footer";
@@ -20,7 +20,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/sign up" element={<Sign_up />} />
         <Route path="/product/:id" element={<Product />} />
-        <Route path="/products/category/:id" element= {<Products />}/>
+        <Route path="/products/category/:category_id" element= {<Products />}/>
         <Route path="/cart" element={<Cart />} />
       </Routes>
       <Footer />

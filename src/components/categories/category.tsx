@@ -1,4 +1,11 @@
-import React from 'react'
+import React from 'react';
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import CardMedia from '@mui/material/CardMedia';
+import CardContent from '@mui/material/CardContent';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import './category.css'
 
 interface CategoryProps  {
@@ -11,14 +18,19 @@ interface CategoryProps  {
 export default function Category(props: CategoryProps) {
 
   return (
-    <div  className="category_style">
-      <div>{props.name}</div>
-
-      <div>
-        <img src={props.img_url} className="img_style_category" />
-      </div>
-      
-        <p>{props.count_click}</p>
-    </div>
+    <Card className = "root">
+      <CardHeader title = {props.name} />
+      <div className= "media">
+        <img src = {props.img_url} alt='img'/>
+      </div> 
+      <IconButton aria-label="add to favorites">
+          <FavoriteIcon />
+        </IconButton>
+        <CardContent>
+        <Typography variant="body2" color="textSecondary" component="p">
+          {props.count_click}
+        </Typography>
+        </CardContent>
+    </Card>
   )
 }
