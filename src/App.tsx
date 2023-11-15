@@ -1,20 +1,20 @@
 import React from "react";
 import Home from "./components/home/Home";
-import NavbarComponent from "./components/navbarComponent/NavbarComponent";
 import { Routes, Route } from "react-router-dom";
 import Login from "./components/login/Login";
 import Sign_up from "./components/sign_up/Sign_up";
 import Products from "./components/products/products";
 import Product from "./components/product/Product";
 import Cart from "./components/cart/Cart";
-import Footer from "./components/footer/Footer";
+import Footer from "./components/Footer/Footer";
 import "./App.css";
+import Header from "./components/header/Header";
 
 
 function App() {
   return (
     <div className="appContainer">
-      <NavbarComponent />
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />

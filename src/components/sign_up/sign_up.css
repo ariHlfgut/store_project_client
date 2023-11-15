@@ -1,0 +1,25 @@
+.signUpForm {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-direction: column;
+  margin-top: 20px;
+  margin-bottom: 70px;
+  position: relative;
+}
+.signUpError {
+  color: red;
+  font-size: 15px;
+}
+
+.fieldContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.signUpField {
+  display: flex;
+  width: 500px;
+  justify-content: center;
+}

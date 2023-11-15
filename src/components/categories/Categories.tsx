@@ -12,6 +12,7 @@ interface CategoryType {
   count_click: number;
 }
 export default function Categories() {
+  
   const API_BASE_URL = 'https://api-service-store-projects.onrender.com/api';
   const [categories, setCategory] = useState<CategoryType[]>([]);
   

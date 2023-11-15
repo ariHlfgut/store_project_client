@@ -46,6 +46,7 @@ const Product = () => {
     }, [])
 
     return (
+
         <Card className='product_details_container'>
             <div>{parms.id}</div>
             <CardHeader 
@@ -86,7 +87,6 @@ const Product = () => {
                 {productDetails?.units_in_stock}
                 </Typography>
             </CardContent>
-
             <IconButton>
                 <Badge badgeContent={0} color="secondary"  anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}>
                     <ControlPointIcon />
