@@ -1,16 +1,17 @@
+
 import React from 'react';
 import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
+import CardActionArea from '@mui/material/CardActionArea';
 import CardActions from '@mui/material/CardActions';
-import IconButton from '@mui/material/IconButton';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import Badge from '@mui/material/Badge';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import EqualizerIcon from '@mui/icons-material/Equalizer';
-import './products.css'
-
+import { useState } from 'react';
 interface ProductProps {
   id: string;
   category_id: string;
@@ -25,38 +26,41 @@ interface ProductProps {
   color: string;
   model: string;
 }
+ export default function Products(props: ProductProps) {
+  const [numberOfProducts ,setNumberOfProducts] = useState(0)
 
-export default function Products(props: ProductProps) {
+  const handleAddToCart = () => {
+      
+      setNumberOfProducts(numberOfProducts + 1);
+    };
 
   return (
-    <Card className = "root">
-      <CardHeader
-        action={
-          <IconButton aria-label="settings">
-            <AddCircleOutlineIcon />
-          </IconButton>
-        }
-        title= {props.title}
-        
-      />
-      <div className= "media">
-        
-        <img src={props.img_url} alt="img" /> 
-      </div>
-      <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-        {props.description}
-        </Typography>
-      
-      {/* <CardActions disableSpacing> */}
-        <IconButton aria-label="add to favorites">
+    <Card style={{ width: "300px", height: "450px", margin: '20px'}}>
+      <CardActionArea>
+      <CardMedia image= 'https://studioclass.co.il/wp-content/uploads/2019/06/Screen-Shot-2019-06-12-at-15.18.51.png' style={{ width: "300px", height: "250px" }} />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="h2">
+            {props.title}
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            {props.description}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+      <CardActions>
+        <IconButton aria-label="Add to Cart"  onClick={handleAddToCart}>
+          <Badge badgeContent={numberOfProducts} color="secondary">
+            <AddShoppingCartIcon />
+          </Badge>
+        </IconButton>
+        <IconButton aria-label="Add to Favorites">
           <FavoriteIcon />
         </IconButton>
         <IconButton aria-label="Comparison">
           <EqualizerIcon />
         </IconButton>
-      {/* </CardActions> */}
-      </CardContent>
+      </CardActions>
     </Card>
-  );
-}
+
+    );
+  }

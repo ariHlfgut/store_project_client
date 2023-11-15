@@ -12,6 +12,9 @@ import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import EqualizerIcon from '@mui/icons-material/Equalizer';
+import Box from '@mui/material/Box';
 
 interface ProductProps {
     id: string;
@@ -30,12 +33,18 @@ interface ProductProps {
 
 const Product = () => {
     const [productDetails, setProductDetails] = useState< ProductProps | null >(null)
-    const parms = useParams();
+    const [numberOfProducts ,setNumberOfProducts] = useState(0)
+    const prams = useParams();
+
+    const handleAddToCart = (event) => {
+        event.stopPropagation();
+        setNumberOfProducts(numberOfProducts + 1);
+      };
 
     useEffect(() => {
         const ProductData = async () => {
             try {
-            const response = await axios.get(`https://api-service-store-projects.onrender.com/api/products/${parms.id}`)
+            const response = await axios.get(`https://api-service-store-projects.onrender.com/api/products/${prams.id}`)
             setProductDetails(response.data)
             }
             catch (error) {
@@ -46,53 +55,50 @@ const Product = () => {
     }, [])
 
     return (
-
-        <Card className='product_details_container'>
-            <div>{parms.id}</div>
+        <Box >
+        <Card style={{width:'800px', height: '650px'}}>
             <CardHeader 
-                action={
-                    <IconButton aria-label="settings">
-                      <AddShoppingCartIcon  />
-                    </IconButton>
-                  }
                   title = {`${productDetails?.name} , ${productDetails?.title}`}
             />
-            <CardMedia
-                className= "media"
-                image= {productDetails?.img_url}
-                title="img product"
-                />
+            <CardMedia image= 'https://studioclass.co.il/wp-content/uploads/2019/06/Screen-Shot-2019-06-12-at-15.18.51.png' style={{ width: "800px", height: "350px" }} />
             <CardContent>
-                <Typography variant="body2" color="textSecondary" component="p">
-                {productDetails?.description}
-                </Typography>
-                
-                <Typography variant="body2" color="textSecondary" component="p">
-                {productDetails?.price}$
+            <Typography variant="body2" color="textSecondary" component="p">
+                PRICE: {productDetails?.price}$
                 </Typography>
 
+                <Typography variant="body2" color="textSecondary" component="p">
+                description: {productDetails?.description}
+                </Typography>
+                
                 <Typography variant="body2" color="textSecondary" component="p">
                 color: {productDetails?.description}
                 </Typography>
 
                 <Typography variant="body2" color="textSecondary" component="p">
-                {productDetails?.model}
+                model: {productDetails?.model}
                 </Typography>
 
                 <Typography variant="body2" color="textSecondary" component="p">
-                {productDetails?.rate}
+                rate: {productDetails?.rate}
                 </Typography>
 
                 <Typography variant="body2" color="textSecondary" component="p">
-                {productDetails?.units_in_stock}
+                units_in_stock: {productDetails?.units_in_stock}
                 </Typography>
             </CardContent>
-            <IconButton>
-                <Badge badgeContent={0} color="secondary"  anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}>
-                    <ControlPointIcon />
+            <IconButton aria-label="settings" onClick={handleAddToCart}>
+                <Badge badgeContent={numberOfProducts} color="secondary"  anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}>
+                    <AddShoppingCartIcon  />
                 </Badge>
             </IconButton>
-        </Card>  
+            <IconButton aria-label="add to favorites">
+                <FavoriteIcon />
+             </IconButton>
+             <IconButton aria-label="Comparison">
+                <EqualizerIcon />
+            </IconButton>
+        </Card> 
+        </Box> 
     )
 }
 export default Product
