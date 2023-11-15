@@ -1,9 +1,10 @@
 import { TextField, Button } from "@mui/material";
-import { TSignUpSchema, signUpSchema } from "../../lib/types";
+import { TSignUpSchema, signUpSchema } from "../../lib/signUpTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { useForm } from "react-hook-form";
 import "./Sign_up.css";
+import { log } from "console";
 
 export default function Sign_up() {
   const {
@@ -17,59 +18,67 @@ export default function Sign_up() {
   });
 
   const onSubmit = async (data: TSignUpSchema) => {
-    const response = await fetch(
-      "https://b2mfc7l4-8181.euw.devtunnels.ms/api/users/register",
-      {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    const responseData = await response.json();
-    if (!response.ok) {
-      alert("Submitting form failed!");
-      return;
-    }
+    console.log(data);
+    try {
+      const response = await fetch(
+        "https://api-service-store-projects.onrender.com/api/users/register",
+        {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-    if (responseData.errors) {
-      const errors = responseData.errors;
-      if (errors.fullName) {
-        setError("fullName", {
-          type: "server",
-          message: errors.fullName,
-        });
-      } else if (errors.email) {
-        setError("email", {
-          type: "server",
-          message: errors.email,
-        });
-      } else if (errors.city) {
-        setError("city", {
-          type: "server",
-          message: errors.city,
-        });
-      } else if (errors.street) {
-        setError("street", {
-          type: "server",
-          message: errors.street,
-        });
-      } else if (errors.departmentNumber) {
-        setError("departmentNumber", {
-          type: "server",
-          message: errors.departmentNumber,
-        });
-      } else if (errors.password) {
-        setError("password", {
-          type: "server",
-          message: errors.password,
-        });
-      } else {
-        alert("Something went wrong!");
+      const responseData = await response.json();
+
+      if (!response.ok) {
+        alert("Submitting form failed!");
+        return;
       }
+
+      if (responseData.errors) {
+        const errors = responseData.errors;
+        if (errors.fullName) {
+          setError("fullName", {
+            type: "server",
+            message: errors.fullName,
+          });
+        } else if (errors.email) {
+          setError("email", {
+            type: "server",
+            message: errors.email,
+          });
+        } else if (errors.city) {
+          setError("address.city", {
+            type: "server",
+            message: errors.city,
+          });
+        } else if (errors.street) {
+          setError("address.street", {
+            type: "server",
+            message: errors.street,
+          });
+        } else if (errors.departmentNumber) {
+          setError("address.departmentNumber", {
+            type: "server",
+            message: errors.departmentNumber,
+          });
+        } else if (errors.password) {
+          setError("password", {
+            type: "server",
+            message: errors.password,
+          });
+        } else {
+          alert("Something went wrong!");
+        }
+      }
+      reset();
+    } catch (error) {
+      console.error("An error occurred while submitting the form:", error);
+      alert("An error occurred while submitting the form");
     }
-    reset();
   };
 
   return (
@@ -95,29 +104,33 @@ export default function Sign_up() {
         )}
       </div>
       <div className="fieldContainer">
-        <TextField className="signUpField" label="City" {...register("city")} />
-        {errors.city && (
-          <p className="signUpError">{`${errors.city.message}`}</p>
+        <TextField
+          className="signUpField"
+          label="City"
+          {...register("address.city")}
+        />
+        {errors.address && (
+          <p className="signUpError">{`${errors.address.message}`}</p>
         )}
       </div>
       <div className="fieldContainer">
         <TextField
           className="signUpField"
           label="Street"
-          {...register("street")}
+          {...register("address.street")}
         />
-        {errors.street && (
-          <p className="signUpError">{`${errors.street.message}`}</p>
+        {errors.address && (
+          <p className="signUpError">{`${errors.address.message}`}</p>
         )}
       </div>
       <div className="fieldContainer">
         <TextField
           className="signUpField"
           label="Department Number"
-          {...register("departmentNumber")}
+          {...register("address.departmentNumber")}
         />
-        {errors.departmentNumber && (
-          <p className="signUpError">{`${errors.departmentNumber.message}`}</p>
+        {errors.address && (
+          <p className="signUpError">{`${errors.address.message}`}</p>
         )}
       </div>
       <div className="fieldContainer">
@@ -128,16 +141,6 @@ export default function Sign_up() {
         />
         {errors.password && (
           <p className="signUpError">{`${errors.password.message}`}</p>
-        )}
-      </div>
-      <div className="fieldContainer">
-        <TextField
-          className="signUpField"
-          label="Password Confirmation"
-          {...register("passwordConfirmation")}
-        />
-        {errors.passwordConfirmation && (
-          <p className="signUpError">{`${errors.passwordConfirmation.message}`}</p>
         )}
       </div>
       <Button disabled={isSubmitting} type="submit" variant="contained">

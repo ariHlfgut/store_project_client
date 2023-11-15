@@ -1,6 +1,6 @@
 "use client";
 import { TextField, Button } from "@mui/material";
-import { TSignUpSchema, signUpSchema } from "../../lib/types";
+import { TSignUpSchema, signUpSchema } from "../../lib/loginTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, type FieldValues } from "react-hook-form";
 import { Link } from "react-router-dom";
@@ -21,6 +21,8 @@ export default function Login() {
 
   const onSubmit = async (data: TSignUpSchema) => {
     try {
+      console.log("Form data:", data);
+
       const response = await axios.post(
         "https://api-service-store-projects.onrender.com/api/users/login",
         data,
@@ -30,11 +32,13 @@ export default function Login() {
           },
         }
       );
+      console.log("API Response:", response);
 
       if (!response.data.ok) {
         alert("Submitting form failed!");
         return;
       }
+
       if (response.data.errors) {
         const serverErrors = response.data.errors;
         if (serverErrors.email) {
@@ -54,6 +58,7 @@ export default function Login() {
     } catch (error) {
       console.error("An error occurred while submitting the form:", error);
       alert("An error occurred while submitting the form");
+      console.log("Catch block executed");
     }
   };
 

@@ -5,7 +5,7 @@ import Login from "./components/login/Login";
 import Sign_up from "./components/sign_up/Sign_up";
 import Products from "./components/products/Products";
 import Product from "./components/product/Product";
-import Cart from "./components/cart/Cart";
+import CartPreview from "./components/cart/CartPreview";
 import Footer from "./components/Footer/Footer";
 import "./App.css";
 import Header from "./components/header/Header";
@@ -20,7 +20,7 @@ function App() {
         <Route path="/sign up" element={<Sign_up />} />
         <Route path="/product/:id" element={<Product />} />
         <Route path="/products/category/:id" element={<Products />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/cartPreview" element={<CartPreview />} />
       </Routes>
       <Footer />
     </div>
