@@ -27,7 +27,11 @@ const ProductsFather = () => {
   useEffect(() => {
     const fetchProductsByCategory = async () => {
       try {
+<<<<<<< HEAD
         const response = await axios.get(`https://b2mfc7l4-8181.euw.devtunnels.ms/api/products`); // You need to create an endpoint that sends to products/category_id
+=======
+        const response = await axios.get(`https://api-service-store-projects.onrender.com/api/products`); // You need to create an endpoint that sends to products/category_id
+>>>>>>> c5fb6cac22924aee80a404ea9e3f90e881053b4a
         setCategoryProducts(response.data);
        
       } catch (error) {
@@ -42,7 +46,11 @@ const ProductsFather = () => {
   return (
     <div>
       {categoryProducts.map((product) => (
+<<<<<<< HEAD
         <Link key={product.id} className="navLink" to={`/product/${product.id}`}>
+=======
+        <Link key={product.id} className="navLink" to={`/product/${product.id}`}> 
+>>>>>>> c5fb6cac22924aee80a404ea9e3f90e881053b4a
           <Products 
             id = {product.id}
             category_id = {product.category_id}

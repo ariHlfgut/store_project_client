@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from "axios";
 
-
 interface CategoryType {
   id: string;
   name: string;
@@ -38,7 +37,7 @@ console.log('API Response:');
 
 console.log('Categories:', categories);
   return (
-    <div>
+    <div className="category_container">
       <h1>categories</h1>
       <div>
         {categories.map((category) => (

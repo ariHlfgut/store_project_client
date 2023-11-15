@@ -3,12 +3,13 @@ import Home from "./components/home/Home";
 import { Routes, Route } from "react-router-dom";
 import Login from "./components/login/Login";
 import Sign_up from "./components/sign_up/Sign_up";
-import Products from "./components/products/Products";
+import Products from "./components/products/products";
 import Product from "./components/product/Product";
 import CartPreview from "./components/cart/CartPreview";
 import Footer from "./components/Footer/Footer";
 import "./App.css";
 import Header from "./components/header/Header";
+
 
 function App() {
   return (
