@@ -3,6 +3,7 @@ import Category from "./category";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import "./category.css";
 
 interface CategoryType {
   _id: string;
@@ -11,15 +12,13 @@ interface CategoryType {
   count_click: number;
 }
 export default function Categories() {
-  const API_BASE_URL = "https://api-service-store-projects.onrender.com/api/";
+  const API_BASE_URL = "https://api-service-store-projects.onrender.com/api";
   const [categories, setCategory] = useState<CategoryType[]>([]);
 
   useEffect(() => {
     const ProductData = async () => {
       try {
-        const response = await axios.get(`${API_BASE_URL}categories`);
-        console.log("API Response:", response.data);
-
+        const response = await axios.get(`${API_BASE_URL}/categories`);
         if (Array.isArray(response.data)) {
           setCategory(response.data);
         } else {
@@ -31,21 +30,23 @@ export default function Categories() {
     };
     ProductData();
   }, []);
-  console.log("API Response:");
 
-  console.log("Categories:", categories);
   return (
-    <div className="category_container">
+    <div>
       <h1>categories</h1>
-      <div>
+      <div className="category_container">
         {categories.map((category) => (
-         <Link key={category._id} className="navLink" to={`/category/${category._id}`}>
-          {/* {`/products/category/${category.id}`}> */}
+          <Link
+            key={category._id}
+            className="navLink"
+            to={`/category/${category._id}`}
+          >
             <Category
-                id = {category._id}
-                name= {category.name}
-                img_url= {category.img_url}
-                count_click={category.count_click}/>
+              id={category._id}
+              name={category.name}
+              img_url={category.img_url}
+              count_click={category.count_click}
+            />
           </Link>
         ))}
       </div>

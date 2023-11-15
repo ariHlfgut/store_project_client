@@ -1,19 +1,14 @@
-.product_details_container {
-    width: 700px;
-    height: 600px;
-    border: 1px solid black;
-    border-radius: 33px;
-    margin: 5px;
-    align-items: center;
-}
-      
-.img_style {
-    width: 250px;
-    height: 250px;
+.cards_container {
+  width: 800px;
+  height: 550px;
 }
 
-.product_img {
-    height: 250px;
-    width: 250px;
+.img_div {
+  width: 800px;
+  height: 180px;
 }
-     
+
+.img_style {
+  height: 200px;
+  width: 400px;
+}
