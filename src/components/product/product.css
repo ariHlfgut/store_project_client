@@ -1,6 +1,9 @@
 .cards_container {
   width: 800px;
   height: 550px;
+  flex: 1;
+  margin-top: 0%;
+  flex-wrap: wrap;
 }
 
 .img_div {
@@ -12,3 +15,9 @@
   height: 200px;
   width: 400px;
 }
+
+/* .flex-container {
+  display: flex;
+  max-width: 800px;
+  margin: 0 auto;
+} */

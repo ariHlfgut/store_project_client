@@ -14,6 +14,8 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import EqualizerIcon from "@mui/icons-material/Equalizer";
 import { color, height, width } from "@mui/system";
+import { Box } from "@mui/material";
+import MapView from "../openLyres/MapView";
 
 interface ProductProps {
   id: string;
@@ -58,64 +60,67 @@ const Product = () => {
   }, []);
 
   return (
-    <Card className="cards_container">
-      <CardHeader
-        title={`${productDetails?.name} , ${productDetails?.title}`}
-      />
-      <div className="card-content-container">
-        <div className="img_div">
-          <CardMedia image={productDetails?.img_url} className="img_style" />
+    <Box className="flex-container">
+      <Card className="cards_container">
+        <CardHeader
+          title={`${productDetails?.name} , ${productDetails?.title}`}
+        />
+        <div className="card-content-container">
+          <div className="img_div">
+            <CardMedia image={productDetails?.img_url} className="img_style" />
+          </div>
+          <CardContent className="description_container">
+            <Typography variant="body2" color="textSecondary" component="p">
+              PRICE: {productDetails?.price}$
+            </Typography>
+
+            <Typography variant="body2" color="textSecondary" component="p">
+              description: {productDetails?.description}
+            </Typography>
+
+            <Typography variant="body2" color="textSecondary" component="p">
+              color: {productDetails?.color}
+              <div
+                style={{
+                  backgroundColor: productDetails?.color,
+                  borderRadius: "50%",
+                  width: "50px",
+                  height: "50px",
+                }}
+              ></div>
+            </Typography>
+
+            <Typography variant="body2" color="textSecondary" component="p">
+              model: {productDetails?.model}
+            </Typography>
+
+            <Typography variant="body2" color="textSecondary" component="p">
+              rate: {productDetails?.rate}
+            </Typography>
+
+            <Typography variant="body2" color="textSecondary" component="p">
+              units_in_stock: {productDetails?.units_in_stock}
+            </Typography>
+          </CardContent>
         </div>
-        <CardContent className="description_container">
-          <Typography variant="body2" color="textSecondary" component="p">
-            PRICE: {productDetails?.price}$
-          </Typography>
-
-          <Typography variant="body2" color="textSecondary" component="p">
-            description: {productDetails?.description}
-          </Typography>
-
-          <Typography variant="body2" color="textSecondary" component="p">
-            color: {productDetails?.color}
-            <div
-              style={{
-                backgroundColor: productDetails?.color,
-                borderRadius: "50%",
-                width: "50px",
-                height: "50px",
-              }}
-            ></div>
-          </Typography>
-
-          <Typography variant="body2" color="textSecondary" component="p">
-            model: {productDetails?.model}
-          </Typography>
-
-          <Typography variant="body2" color="textSecondary" component="p">
-            rate: {productDetails?.rate}
-          </Typography>
-
-          <Typography variant="body2" color="textSecondary" component="p">
-            units_in_stock: {productDetails?.units_in_stock}
-          </Typography>
-        </CardContent>
-      </div>
-      <IconButton aria-label="settings" onClick={handleAddToCart}>
-        <Badge
-          badgeContent={numberOfProducts}
-          color="secondary"
-          anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-        >
-          <AddShoppingCartIcon />
-        </Badge>
-      </IconButton>
-      <IconButton aria-label="add to favorites">
-        <FavoriteIcon />
-      </IconButton>
-      <IconButton aria-label="Comparison">
-        <EqualizerIcon />
-      </IconButton>
-    </Card>
+        <IconButton aria-label="settings" onClick={handleAddToCart}>
+          <Badge
+            badgeContent={numberOfProducts}
+            color="secondary"
+            anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+          >
+            <AddShoppingCartIcon />
+          </Badge>
+        </IconButton>
+        <IconButton aria-label="add to favorites">
+          <FavoriteIcon />
+        </IconButton>
+        <IconButton aria-label="Comparison">
+          <EqualizerIcon />
+        </IconButton>
+      </Card>{" "}
+      <MapView />
+    </Box>
   );
 };
 export default Product;
