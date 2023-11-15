@@ -4,7 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { useForm } from "react-hook-form";
 import "./Sign_up.css";
-import { log } from "console";
 
 export default function Sign_up() {
   const {
@@ -41,7 +40,7 @@ export default function Sign_up() {
       if (responseData.errors) {
         const errors = responseData.errors;
         if (errors.fullName) {
-          setError("fullName", {
+          setError("full_name", {
             type: "server",
             message: errors.fullName,
           });
@@ -61,7 +60,7 @@ export default function Sign_up() {
             message: errors.street,
           });
         } else if (errors.departmentNumber) {
-          setError("address.departmentNumber", {
+          setError("address.apartment_number", {
             type: "server",
             message: errors.departmentNumber,
           });
@@ -87,10 +86,10 @@ export default function Sign_up() {
         <TextField
           className="signUpField"
           label="Full Name"
-          {...register("fullName")}
+          {...register("full_name")}
         />
-        {errors.fullName && (
-          <p className="signUpError">{`${errors.fullName.message}`}</p>
+        {errors.full_name && (
+          <p className="signUpError">{`${errors.full_name.message}`}</p>
         )}
       </div>
       <div className="fieldContainer">
@@ -127,7 +126,7 @@ export default function Sign_up() {
         <TextField
           className="signUpField"
           label="Department Number"
-          {...register("address.departmentNumber")}
+          {...register("address.apartment_number")}
         />
         {errors.address && (
           <p className="signUpError">{`${errors.address.message}`}</p>

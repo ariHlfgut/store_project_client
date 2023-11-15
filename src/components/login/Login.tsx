@@ -19,10 +19,10 @@ export default function Login() {
     resolver: zodResolver(signUpSchema),
   });
 
+  const [loginData, setLoginData] = React.useState<null | Object>({});
+
   const onSubmit = async (data: TSignUpSchema) => {
     try {
-      console.log("Form data:", data);
-
       const response = await axios.post(
         "https://api-service-store-projects.onrender.com/api/users/login",
         data,
@@ -32,9 +32,7 @@ export default function Login() {
           },
         }
       );
-      console.log("API Response:", response);
-
-      if (!response.data.ok) {
+      if (!response.status) {
         alert("Submitting form failed!");
         return;
       }

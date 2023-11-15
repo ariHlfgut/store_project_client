@@ -1,6 +1,6 @@
 html,
 body {
-  background-color: #bebebe;
+  background-color: white;
   font-family: "Roboto", sans-serif;
 }
 
@@ -27,8 +27,14 @@ body {
 .total-price {
   width: 83px;
   padding-top: 27px;
+  padding-bottom: 20px;
+  padding-left: 30px;
   text-align: center;
   font-size: 16px;
   color: #43484d;
   font-weight: 300;
+}
+
+.payButton {
+  padding-top: 5px;
 }

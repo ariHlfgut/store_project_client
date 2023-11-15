@@ -34,7 +34,7 @@ export default function Cart() {
         </button>
       </div>
 
-      <div className="total-price">$549</div>
+      <div className="price">$549</div>
     </div>
   );
 }
