@@ -3,8 +3,14 @@ import "./Footer.css";
 
 export default function Footer() {
   return (
-    <div className="footerContainer">
-      <p>footer</p>
-    </div>
+    <footer>
+      <div className="footer-main">
+        <div className="footer-about">
+          <p>Company information here...</p>
+        </div>
+      </div>
+    </footer>
   );
 }
+
+// fix the footer position
