@@ -37,7 +37,7 @@ interface ProductProps {
   return (
     <Card style={{ width: "300px", height: "450px", margin: '20px'}}>
       <CardActionArea>
-      <CardMedia image= 'https://studioclass.co.il/wp-content/uploads/2019/06/Screen-Shot-2019-06-12-at-15.18.51.png' style={{ width: "300px", height: "250px" }} />
+      <CardMedia image= {props.img_url} style={{ width: "300px", height: "250px" }} />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {props.title}
