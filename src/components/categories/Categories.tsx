@@ -6,7 +6,7 @@ import axios from "axios";
 import './category.css'
 
 interface CategoryType {
-  id: string;
+  _id: string;
   name: string;
   img_url: string;
   count_click: number;
@@ -42,10 +42,10 @@ export default function Categories() {
       <br />
       <div>
         {categories.map((category) => (
-         <Link key={category.id} className="navLink" to={`/products`}>
+         <Link key={category._id} className="navLink" to={`/category/${category._id}`}>
           {/* {`/products/category/${category.id}`}> */}
             <Category
-                id = {category.id}
+                id = {category._id}
                 name= {category.name}
                 img_url= {category.img_url}
                 count_click={category.count_click}/>

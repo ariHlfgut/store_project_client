@@ -18,19 +18,9 @@ interface CategoryProps  {
 export default function Category(props: CategoryProps) {
 
   return (
-    <Card className = "root">
+    <Card style={{ width: "300px", height: "300px", margin: '20px'}}>
       <CardHeader title = {props.name} />
-      <div className= "media">
-        <img src = {props.img_url} alt='img'/>
-      </div> 
-      <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {props.count_click}
-        </Typography>
-        </CardContent>
+      <CardMedia image= 'https://studioclass.co.il/wp-content/uploads/2019/06/Screen-Shot-2019-06-12-at-15.18.51.png' style={{ width: "300px", height: "200px" }} />
     </Card>
   )
 }
