@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import './productsMap.css'
+
 interface ProductProps {
   _id: string;
   category_id: string;
@@ -26,18 +27,15 @@ const ProductsFather = () => {
   useEffect(() => {
     const fetchProductsByCategory = async () => {
       try {
-        const response = await axios.get(`https://api-service-store-projects.onrender.com/api/categoryes/${prams.id}`); // You need to create an endpoint that sends to products/category_id
+        const response = await axios.get(`https://api-service-store-projects.onrender.com/api/products/category/${prams.id}`); 
         setCategoryProducts(response.data);
-        console.log(response.data[0]._id)
       } catch (error) {
         console.log('Error fetching products by category', error);
-     
       }
     };
     fetchProductsByCategory();
   }, []);
 
- 
   return (
     <div className="container_products">
       {categoryProducts.map((product) => (
