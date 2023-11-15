@@ -3,7 +3,7 @@ import Category from "./category";
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from "axios";
-
+import './category.css'
 
 interface CategoryType {
   id: string;
@@ -12,7 +12,8 @@ interface CategoryType {
   count_click: number;
 }
 export default function Categories() {
-  const API_BASE_URL = 'https://api-service-store-projects.onrender.com/';
+  
+  const API_BASE_URL = 'https://api-service-store-projects.onrender.com/api';
   const [categories, setCategory] = useState<CategoryType[]>([]);
   
   useEffect(() => {
@@ -34,22 +35,21 @@ export default function Categories() {
     };
     ProductData()        
 }, [])
-console.log('API Response:');
 
-console.log('Categories:', categories);
   return (
-    <div>
+    <div className="category_container">
       <h1>categories</h1>
+      <br />
       <div>
         {categories.map((category) => (
-         <Link key={category.id} className="navLink" to={`/products/category/${category.id}`}>
+         <Link key={category.id} className="navLink" to={`/products`}>
+          {/* {`/products/category/${category.id}`}> */}
             <Category
                 id = {category.id}
                 name= {category.name}
                 img_url= {category.img_url}
                 count_click={category.count_click}/>
           </Link>
-            
         ))}
       </div>
     </div>

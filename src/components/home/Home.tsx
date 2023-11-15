@@ -4,9 +4,9 @@ import Categories from "../categories/Categories";
 
 export default function Home() {
   return (
-    <>
-    <h1>home</h1>
-    <Categories />
-    </>
+    <div className="home_container">
+      <h1>home</h1>
+      <Categories />
+    </div>
   )
 }

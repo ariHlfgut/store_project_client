@@ -1,4 +1,4 @@
-.category_style {
+/* .category_style {
     display: flex;
     width: 300px;
     height: 400px;
@@ -17,4 +17,26 @@
   .test {
     display: flex;
     flex-wrap: wrap;
+  } */
+
+  .root {
+    width: 250px;
+    height: 300px;
+    margin: 0 10px;
+    box-sizing: border-box;
+    flex-basis: calc(33.33% - 20px)
   }
+
+  
+  .media {
+    height: 0;
+    padding-top: 140%; 
+    width: 250Px;
+    height: 600px;
+  }
+
+  .category_container {
+    display: flex;
+    flex-direction: row;
+
+}
