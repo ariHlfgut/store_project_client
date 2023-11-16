@@ -1,0 +1,21 @@
+.product_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(199, 217, 233);
+}
+.cards_container {
+  width: 800px;
+  height: 550px;
+  margin: 20px;
+}
+
+.img_div {
+  width: 800px;
+  height: 180px;
+}
+
+.img_style {
+  height: 200px;
+  width: 400px;
+}

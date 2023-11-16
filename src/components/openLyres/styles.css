@@ -1,0 +1,44 @@
+body {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.App {
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.map-container {
+  position: relative;
+  height: 70vh;
+  width: 50%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgb(21, 19, 19);
+}
+
+#map {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background: "white";
+}
+.locate {
+  top: 6em;
+  left: 0.5em;
+}
+.AddPoint {
+  height: 100%;
+  width: 50%;
+}
+
+.add-point {
+  position: absolute;
+  top: 1em;
+  right: 0.5em;
+}
