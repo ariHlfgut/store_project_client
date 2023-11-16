@@ -1,17 +1,16 @@
-
-import React from 'react';
-import Card from '@mui/material/Card';
-import CardActionArea from '@mui/material/CardActionArea';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import Badge from '@mui/material/Badge';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import EqualizerIcon from '@mui/icons-material/Equalizer';
-import { useState } from 'react';
+import React from "react";
+import Card from "@mui/material/Card";
+import CardActionArea from "@mui/material/CardActionArea";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
+import Badge from "@mui/material/Badge";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import EqualizerIcon from "@mui/icons-material/Equalizer";
+import { useState } from "react";
 interface ProductProps {
   id: string;
   category_id: string;
@@ -26,8 +25,9 @@ interface ProductProps {
   color: string;
   model: string;
 }
- export default function Products(props: ProductProps) {
-  const [numberOfProducts ,setNumberOfProducts] = useState(0)
+export default function Products(props: ProductProps) {
+  const [numberOfProducts, setNumberOfProducts] = useState(0);
+
 
   const handleAddToCart = (event) => {
       event.stopPropagation();
@@ -48,7 +48,7 @@ interface ProductProps {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <IconButton aria-label="Add to Cart"  onClick={handleAddToCart}>
+        <IconButton aria-label="Add to Cart" onClick={handleAddToCart}>
           <Badge badgeContent={numberOfProducts} color="secondary">
             <AddShoppingCartIcon />
           </Badge>
@@ -61,6 +61,5 @@ interface ProductProps {
         </IconButton>
       </CardActions>
     </Card>
-
-    );
-  }
+  );
+}

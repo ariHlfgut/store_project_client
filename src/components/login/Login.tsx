@@ -1,6 +1,6 @@
 "use client";
 import { TextField, Button } from "@mui/material";
-import { TSignUpSchema, signUpSchema } from "../../lib/types";
+import { TSignUpSchema, signUpSchema } from "../../lib/loginTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, type FieldValues } from "react-hook-form";
 import { Link } from "react-router-dom";
@@ -19,6 +19,8 @@ export default function Login() {
     resolver: zodResolver(signUpSchema),
   });
 
+  const [loginData, setLoginData] = React.useState<null | Object>({});
+
   const onSubmit = async (data: TSignUpSchema) => {
     try {
       const response = await axios.post(
@@ -30,11 +32,11 @@ export default function Login() {
           },
         }
       );
-
-      if (!response.data.ok) {
+      if (!response.status) {
         alert("Submitting form failed!");
         return;
       }
+
       if (response.data.errors) {
         const serverErrors = response.data.errors;
         if (serverErrors.email) {
@@ -54,6 +56,7 @@ export default function Login() {
     } catch (error) {
       console.error("An error occurred while submitting the form:", error);
       alert("An error occurred while submitting the form");
+      console.log("Catch block executed");
     }
   };
 

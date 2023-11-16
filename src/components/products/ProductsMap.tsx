@@ -3,7 +3,7 @@ import Products from "./ProductsView";
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import './productsMap.css'
+import "./productsMap.css";
 
 interface ProductProps {
   _id: string;
@@ -21,16 +21,18 @@ interface ProductProps {
 }
 
 const ProductsFather = () => {
- const prams = useParams()
+  const prams = useParams();
   const [categoryProducts, setCategoryProducts] = useState<ProductProps[]>([]);
 
   useEffect(() => {
     const fetchProductsByCategory = async () => {
       try {
-        const response = await axios.get(`https://api-service-store-projects.onrender.com/api/products/category/${prams.id}`); 
+        const response = await axios.get(
+          `https://api-service-store-projects.onrender.com/api/products/category/${prams.id}`
+        );
         setCategoryProducts(response.data);
       } catch (error) {
-        console.log('Error fetching products by category', error);
+        console.log("Error fetching products by category", error);
       }
     };
     fetchProductsByCategory();
@@ -39,21 +41,26 @@ const ProductsFather = () => {
   return (
     <div className="container_products">
       {categoryProducts.map((product) => (
-        <Link key={product._id} className="navLink" to={`/product/${product._id}`}> 
-          <Products 
-            id = {product._id}
-            category_id = {product.category_id}
-            name = {product.name}
-            title = {product.title}
-            description = {product.description}
-            price = {product.price}
-            img_url = {product.img_url}
-            units_in_stock = {product.units_in_stock}
-            rate = {product.rate}
-            count_clicks = {product.count_clicks}
-            color = {product.color}
-            model = {product.model}/>
-         </Link>
+        <Link
+          key={product._id}
+          className="navLink"
+          to={`/product/${product._id}`}
+        >
+          <Products
+            id={product._id}
+            category_id={product.category_id}
+            name={product.name}
+            title={product.title}
+            description={product.description}
+            price={product.price}
+            img_url={product.img_url}
+            units_in_stock={product.units_in_stock}
+            rate={product.rate}
+            count_clicks={product.count_clicks}
+            color={product.color}
+            model={product.model}
+          />
+        </Link>
       ))}
     </div>
   );

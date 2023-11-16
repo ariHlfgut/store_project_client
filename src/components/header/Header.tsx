@@ -4,7 +4,6 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import SearchIcon from "@mui/icons-material/Search";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import ShoppingCartSharpIcon from "@mui/icons-material/ShoppingCartSharp";
@@ -44,7 +43,7 @@ export default function Header() {
                 <HomeIcon sx={{ color: "white" }} />
               </IconButton>
             </Link>
-            <Link to={"/cart"}>
+            <Link to={"/cartPreview"}>
               <IconButton
                 className="icon"
                 color="inherit"

@@ -6,7 +6,7 @@ export default function Footer() {
     <footer>
       <div className="footer-main">
         <div className="footer-about">
-          <p>Company information here...</p>
+          <p>Copyright ©</p>
         </div>
       </div>
     </footer>
