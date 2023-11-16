@@ -42,6 +42,7 @@ const Product = () => {
 
     const handleAddToCart = () => {
         setNumberOfProducts(numberOfProducts + 1);
+    }
 
   useEffect(() => {
     const ProductData = async () => {
@@ -114,10 +115,9 @@ const Product = () => {
                 <EqualizerIcon />
             </IconButton>
     </Card>
-      <MapView />
+      {/* <MapView /> */}
     </div>
     )
-}
 }
 export default Product;
 
