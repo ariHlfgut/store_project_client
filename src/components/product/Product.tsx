@@ -20,6 +20,7 @@ import MapView from "../openLyres/MapView";
 interface ProductProps {
   id: string;
   category_id: string;
+
   name: string;
   title: string;
   description: string;
@@ -41,7 +42,10 @@ const Product = () => {
 
 
     const handleAddToCart = () => {
-        setNumberOfProducts(numberOfProducts + 1);
+      if (prams.id) {
+        localStorage.setItem('selectedProductId', prams.id);
+        console.log(prams.id)
+      }
     }
 
   useEffect(() => {
@@ -57,7 +61,7 @@ const Product = () => {
 
     };
     ProductData();
-  }, []);
+  }, [prams.id]);
 
     return (
         <div className='product_container'>
@@ -120,4 +124,15 @@ const Product = () => {
     )
 }
 export default Product;
+
+interface CartInterFace {
+  cart_id: string
+  user_id: string
+  products: {
+    [key: string]: {
+      units:number
+    }
+  }
+ 
+}
 

@@ -27,12 +27,25 @@ interface ProductProps {
 }
 export default function Products(props: ProductProps) {
   const [numberOfProducts, setNumberOfProducts] = useState(0);
-
+  const [isClickedFavorite, setIsClickedFavorite] = useState(false);
+  const [isClickedEqualizer, setIsClickedEqualizer] = useState(false);
 
   const handleAddToCart = (event) => {
-      event.stopPropagation();
+      event.preventDefault();
       setNumberOfProducts(numberOfProducts + 1);
     };
+
+    const handleStopFavorite = (event) => {
+      event.preventDefault();
+      setIsClickedFavorite(true);
+    }
+
+    const handleStopEqualizer = (event) => {
+      event.preventDefault();
+      setIsClickedEqualizer(!isClickedEqualizer);
+    }
+   
+   
 
   return (
     <Card className='product_card'>
@@ -48,15 +61,19 @@ export default function Products(props: ProductProps) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <IconButton aria-label="Add to Cart" onClick={handleAddToCart}>
+        <IconButton aria-label="Add to Cart" onClick={handleAddToCart} >
           <Badge badgeContent={numberOfProducts} color="secondary">
             <AddShoppingCartIcon />
           </Badge>
         </IconButton>
-        <IconButton aria-label="Add to Favorites">
+        <IconButton aria-label="Add to Favorites" 
+         onClick={handleStopFavorite}
+         style={{ color: isClickedFavorite ? 'red' : 'inherit' }}>
           <FavoriteIcon />
         </IconButton>
-        <IconButton aria-label="Comparison">
+        <IconButton aria-label="Comparison"
+          onClick={handleStopEqualizer}
+          style={{ color: isClickedEqualizer ? 'blue' : 'inherit' }}>
           <EqualizerIcon />
         </IconButton>
       </CardActions>
