@@ -4,10 +4,8 @@ import "./styles.css";
 import "ol/ol.css";
 import { Map } from "ol";
 import { map } from "./mapLyres";
-import { useContext } from "react";
 import { addIcon } from "./mapLyres";
 import axios from "axios";
-import StoreIcon from "@mui/icons-material/Store";
 import getToken from "../../utiles/getToken";
 
 interface StoreLocations {
