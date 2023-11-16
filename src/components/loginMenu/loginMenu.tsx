@@ -7,6 +7,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 import Divider from '@mui/material/Divider';
 import { AccountCircle } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
 
 const StyledMenu = styled((props: MenuProps) => (
   <Menu
@@ -50,6 +51,9 @@ const StyledMenu = styled((props: MenuProps) => (
 }));
 
 export default function LoginMenu() {
+
+  const navigate = useNavigate();
+
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -63,12 +67,12 @@ export default function LoginMenu() {
 
   const handleLogin = () => {
     setAnchorEl(null);
-    window.location.href = "/login"
+    navigate('/login');
     
 
   };const handleRegister = () => {
     setAnchorEl(null);
-    window.location.href = "/signup"
+    navigate('/signup');
   };
 
   

@@ -3,7 +3,7 @@ import { TextField, Button } from "@mui/material";
 import { TSignUpSchema, signUpSchema } from "../../lib/loginTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import React from "react";
 import "./login.css";
@@ -12,6 +12,9 @@ import "react-toastify/dist/ReactToastify.css";
 import getToken from "../../utiles/getToken";
 
 export default function Login() {
+
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -37,13 +40,14 @@ export default function Login() {
       if (response.status === 200) {
         console.log(response);
         if (response.data.token) {
-          localStorage.setItem("token", response.data);
+          localStorage.setItem("token", response.data.token);
+          localStorage.setItem("userId", response.data.user._id);
         }
         // TODO Save User Obj in Redux
         toast("Login Successful!");
         setTimeout(() => {
-          window.location.href = "/";
-        }, 10000);
+          navigate('/');
+        }, 1000);
       } else {
         alert("Submitting form failed!");
         return;
