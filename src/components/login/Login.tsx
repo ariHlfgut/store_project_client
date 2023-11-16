@@ -35,6 +35,7 @@ export default function Login() {
         }
       );
 
+      
       if (response.status === 200) {
         console.log(response);
         if (response.data) {
@@ -46,6 +47,7 @@ export default function Login() {
         }, 600);
       }
       else {
+
         alert("Submitting form failed!");
         return;
       }
