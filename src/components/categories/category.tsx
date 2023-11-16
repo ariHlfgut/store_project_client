@@ -11,12 +11,12 @@ interface CategoryProps {
 export default function Category(props: CategoryProps) {
   return (
     <div className="category_card">
-      <h2>{props.name}</h2>
       <img
         src={props.img_url}
         className="img_card_category"
         alt="Circular Image"
       />
+      <h2>{props.name}</h2>
     </div>
   );
 }

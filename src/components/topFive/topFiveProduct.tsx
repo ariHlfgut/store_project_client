@@ -4,13 +4,22 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "../categories/category.css";
 import Category from "../categories/category";
-
+import Products from "../products/ProductsView";
 interface ProductType {
   _id: string;
+  category_id: string;
   name: string;
+  title: string;
+  description: string;
+  price: number;
   img_url: string;
-  count_click: number;
+  units_in_stock: number;
+  rate: number;
+  count_clicks: number;
+  color: string;
+  model: string;
 }
+
 export default function TopFiveProducts() {
   const API_BASE_URL = "https://api-service-store-projects.onrender.com/api";
   const [topProducts, setTopProducts] = useState<ProductType[]>([]);
@@ -35,19 +44,26 @@ export default function TopFiveProducts() {
 
   return (
     <div>
-      <h1>topCategories</h1>
       <div className="category_container">
         {topProducts.map((Product) => (
           <Link
             key={Product._id}
             className="navLink"
-            to={`/category/${Product._id}`}
+            to={`/product/${Product._id}`}
           >
-            <Category
+            <Products
               id={Product._id}
+              category_id={Product.category_id}
               name={Product.name}
+              title={Product.title}
+              description={Product.description}
+              price={Product.price}
               img_url={Product.img_url}
-              count_click={Product.count_click}
+              units_in_stock={Product.units_in_stock}
+              rate={Product.rate}
+              count_clicks={Product.count_clicks}
+              color={Product.color}
+              model={Product.model}
             />
           </Link>
         ))}

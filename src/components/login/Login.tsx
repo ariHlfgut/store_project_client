@@ -8,8 +8,8 @@ import axios from "axios";
 import React from "react";
 import "./login.css";
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import getToken from "../../utiles/getToken";
 
 export default function Login() {
@@ -30,12 +30,11 @@ export default function Login() {
         {
           headers: {
             "Content-Type": "application/json",
-            "authorization": getToken()
+            authorization: getToken(),
           },
         }
       );
 
-      
       if (response.status === 200) {
         console.log(response);
         if (response.data) {
@@ -43,11 +42,9 @@ export default function Login() {
         }
         toast("Login Successful!");
         setTimeout(() => {
-            window.location.href = "/";
+          window.location.href = "/";
         }, 600);
-      }
-      else {
-
+      } else {
         alert("Submitting form failed!");
         return;
       }
@@ -76,36 +73,39 @@ export default function Login() {
   };
 
   return (
-    <><form onSubmit={handleSubmit(onSubmit)} className="loginForm">
-      <div className="fieldContainer">
-        <TextField
-          className="loginField"
-          label="Email"
-          {...register("email")} />
-        {errors.email && (
-          <p className="loginError">{`${errors.email.message}`}</p>
-        )}
-      </div>
-      <div className="fieldContainer">
-        <TextField
-          className="loginField"
-          label="Password"
-          {...register("password")} />
-        {errors.password && (
-          <p className="loginError">{`${errors.password.message}`}</p>
-        )}
-      </div>
-      <Button disabled={isSubmitting} type="submit" variant="contained">
-        LOGIN
-      </Button>
-      <p className="p">
-        you dont have account?{" "}
-        <Link className="sign" to={"/sign up"}>
-          sign up
-        </Link>
-      </p>
-    </form>
-    <ToastContainer />
+    <>
+      <form onSubmit={handleSubmit(onSubmit)} className="loginForm">
+        <div className="fieldContainer">
+          <TextField
+            className="loginField"
+            label="Email"
+            {...register("email")}
+          />
+          {errors.email && (
+            <p className="loginError">{`${errors.email.message}`}</p>
+          )}
+        </div>
+        <div className="fieldContainer">
+          <TextField
+            className="loginField"
+            label="Password"
+            {...register("password")}
+          />
+          {errors.password && (
+            <p className="loginError">{`${errors.password.message}`}</p>
+          )}
+        </div>
+        <Button disabled={isSubmitting} type="submit" variant="contained">
+          LOGIN
+        </Button>
+        <p className="p">
+          you dont have account?
+          <Link className="sign" to={"/sign up"}>
+            sign up
+          </Link>
+        </p>
+      </form>
+      <ToastContainer />
     </>
   );
 }

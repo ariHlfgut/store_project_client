@@ -61,7 +61,7 @@ export const map = new Map({
   target: "map",
   layers: [osmBaseLayer, vectorLayer],
   view: new View({
-    center: [0, 0],
+    center: [3921278.779851529, 3734736.2666614093],
     zoom: 2,
   }),
   controls: defaultControls().extend([mousePositionControl, scale]),

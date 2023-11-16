@@ -36,7 +36,9 @@ export default function MapView() {
     const getStoreData = async () => {
       try {
         const response = await axios.get(
-          `https://api-service-store-projects.onrender.com/api/storeLocations`, { headers: { "authorization": getToken() }});
+          `https://api-service-store-projects.onrender.com/api/storeLocations`,
+          { headers: { authorization: getToken() } }
+        );
         setStoreLocations(response.data);
       } catch (error) {
         console.log("error to fetch data", error);

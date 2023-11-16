@@ -124,8 +124,9 @@ const Product = () => {
         <IconButton aria-label="Comparison">
           <EqualizerIcon />
         </IconButton>
+        <br />
+        <Rating name="simple-controlled" value={value} />
       </Card>
-      <MapView />
     </div>
   );
 };

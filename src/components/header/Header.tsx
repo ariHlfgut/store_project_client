@@ -10,7 +10,7 @@ import ShoppingCartSharpIcon from "@mui/icons-material/ShoppingCartSharp";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import HomeIcon from "@mui/icons-material/Home";
 import { Link } from "react-router-dom";
-
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 export default function Header() {
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -32,6 +32,17 @@ export default function Header() {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
+            <Link to={"/storeLocation"}>
+              <IconButton
+                className="icon"
+                color="inherit"
+                aria-label="shopping cart"
+                aria-haspopup="true"
+                size="large"
+              >
+                <LocationOnIcon sx={{ color: "white" }} />
+              </IconButton>
+            </Link>
             <Link to={"/"}>
               <IconButton
                 className="icon"
