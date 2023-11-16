@@ -16,11 +16,10 @@
 .product_card:hover {
   width: 320px;
   height: 470px;
-  transition: width 0.3s ease-in-out, height 0.3s ease-in-out; 
+  transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
 }
 
 .img_card {
   width: auto;
   height: 250px;
 }
-
