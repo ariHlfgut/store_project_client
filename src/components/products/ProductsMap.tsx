@@ -29,7 +29,7 @@ const ProductsFather = () => {
     const fetchProductsByCategory = async () => {
       try {
         const response = await axios.get(
-          `https://api-service-store-projects.onrender.com/api/products/category/${prams.id}`
+          `https://api-service-store-projects.onrender.com/api/products/category/${params.id}`
           , { headers: { "authorization": getToken() }});
         setCategoryProducts(response.data);
       } catch (error) {
