@@ -16,6 +16,7 @@ import EqualizerIcon from "@mui/icons-material/Equalizer";
 import { color, height, width } from "@mui/system";
 import { Box } from "@mui/material";
 import MapView from "../openLyres/MapView";
+import Rating from "@mui/material/Rating";
 
 interface ProductProps {
   id: string;
@@ -31,11 +32,17 @@ interface ProductProps {
   color: string;
   model: string;
 }
-
+function convertToRating(purchases: number): number {
+  const scalingFactor: number = 150;
+  const normalizedValue: number = Math.min(1, purchases / scalingFactor);
+  const rating: number = Math.ceil(normalizedValue * 5);
+  return rating;
+}
 const Product = () => {
   const [productDetails, setProductDetails] = useState<ProductProps | null>(
     null
   );
+  const [value, setValue] = React.useState<number | null>(2);
   const [numberOfProducts, setNumberOfProducts] = useState(0);
   const prams = useParams();
 
@@ -51,7 +58,7 @@ const Product = () => {
           `https://api-service-store-projects.onrender.com/api/products/${prams.id}`
         );
         setProductDetails(response.data);
-        console.log(response.data[0]._id);
+        setValue(convertToRating(response.data.units_in_stock));
       } catch (error) {
         console.log("error to fetch data", error);
       }
@@ -118,7 +125,14 @@ const Product = () => {
         <IconButton aria-label="Comparison">
           <EqualizerIcon />
         </IconButton>
-      </Card>{" "}
+        <Box
+          sx={{
+            "& > legend": { mt: 2 },
+          }}
+        >
+          <Rating name="simple-controlled" value={value} />
+        </Box>
+      </Card>
       <MapView />
     </Box>
   );

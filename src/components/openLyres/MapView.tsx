@@ -24,18 +24,14 @@ export function useMap() {
 export default function MapView() {
   const mapRef = useRef<HTMLDivElement>(null);
   const map = useMap();
+  const [storeLocations, setStoreLocations] = useState<StoreLocations[] | null>(
+    null
+  );
   useEffect(() => {
     if (mapRef.current) {
       map.setTarget(mapRef.current);
       map.updateSize();
     }
-  }, [map]);
-
-  const [storeLocations, setStoreLocations] = useState<StoreLocations[] | null>(
-    null
-  );
-
-  useEffect(() => {
     const getStoreData = async () => {
       try {
         const response = await axios.get(
@@ -48,16 +44,16 @@ export default function MapView() {
     };
     getStoreData();
   }, []);
-  const storeData = storeLocations;
 
-  if (!storeData) return null;
+  const storeData = storeLocations;
 
   const icons =
     "https://play-lh.googleusercontent.com/R94TS80bs6dluM2dO06FXwRPwcFw_SFG3T264LCvpoQgLFV8hNzbauOykSz-0kT9aQ=w240-h480-rw";
 
-  storeData.map((store) => {
-    addIcon(store.name, [store.coordinates.x, store.coordinates.y], icons);
-  });
+  storeData &&
+    storeData.map((store) => {
+      addIcon(store.name, [store.coordinates.x, store.coordinates.y], icons);
+    });
   return (
     <div className="App">
       <h1>store location</h1>
