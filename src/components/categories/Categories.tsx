@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./category.css";
+import getToken from "../../utiles/getToken";
 
 interface CategoryType {
   _id: string;
@@ -18,7 +19,7 @@ export default function Categories() {
   useEffect(() => {
     const ProductData = async () => {
       try {
-        const response = await axios.get(`${API_BASE_URL}/categories`);
+        const response = await axios.get(`${API_BASE_URL}/categories`, { headers: { "authorization": getToken() }});
         if (Array.isArray(response.data)) {
           setCategory(response.data);
         } else {

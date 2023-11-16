@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./productsMap.css";
+import getToken from "../../utiles/getToken";
 
 interface ProductProps {
   _id: string;
@@ -29,7 +30,7 @@ const ProductsFather = () => {
       try {
         const response = await axios.get(
           `https://api-service-store-projects.onrender.com/api/products/category/${prams.id}`
-        );
+          , { headers: { "authorization": getToken() }});
         setCategoryProducts(response.data);
       } catch (error) {
         console.log("Error fetching products by category", error);

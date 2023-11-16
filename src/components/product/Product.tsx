@@ -16,6 +16,7 @@ import EqualizerIcon from "@mui/icons-material/Equalizer";
 import { color, height, width } from "@mui/system";
 import { Box } from "@mui/material";
 import MapView from "../openLyres/MapView";
+import getToken from "../../utiles/getToken";
 
 interface ProductProps {
   id: string;
@@ -49,7 +50,7 @@ const Product = () => {
       try {
         const response = await axios.get(
           `https://api-service-store-projects.onrender.com/api/products/${prams.id}`
-        );
+          , { headers: { "authorization": getToken() }});
         setProductDetails(response.data);
       } catch (error) {
         console.log("error to fetch data", error);

@@ -2,24 +2,25 @@
 import { TextField, Button } from "@mui/material";
 import { TSignUpSchema, signUpSchema } from "../../lib/loginTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm, type FieldValues } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import React from "react";
 import "./login.css";
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import getToken from "../../utiles/getToken";
 
 export default function Login() {
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-    reset,
     setError,
   } = useForm<TSignUpSchema>({
     resolver: zodResolver(signUpSchema),
   });
-
-  const [loginData, setLoginData] = React.useState<null | Object>({});
 
   const onSubmit = async (data: TSignUpSchema) => {
     try {
@@ -29,10 +30,22 @@ export default function Login() {
         {
           headers: {
             "Content-Type": "application/json",
+            "authorization": getToken()
           },
         }
       );
-      if (!response.status) {
+
+      if (response.status === 200) {
+        console.log(response);
+        if (response.data) {
+          localStorage.setItem("token", response.data);
+        }
+        toast("Login Successful!");
+        setTimeout(() => {
+            window.location.href = "/";
+        }, 600);
+      }
+      else {
         alert("Submitting form failed!");
         return;
       }
@@ -61,13 +74,12 @@ export default function Login() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="loginForm">
+    <><form onSubmit={handleSubmit(onSubmit)} className="loginForm">
       <div className="fieldContainer">
         <TextField
           className="loginField"
           label="Email"
-          {...register("email")}
-        />
+          {...register("email")} />
         {errors.email && (
           <p className="loginError">{`${errors.email.message}`}</p>
         )}
@@ -76,8 +88,7 @@ export default function Login() {
         <TextField
           className="loginField"
           label="Password"
-          {...register("password")}
-        />
+          {...register("password")} />
         {errors.password && (
           <p className="loginError">{`${errors.password.message}`}</p>
         )}
@@ -92,5 +103,7 @@ export default function Login() {
         </Link>
       </p>
     </form>
+    <ToastContainer />
+    </>
   );
 }
