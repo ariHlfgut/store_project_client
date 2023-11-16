@@ -13,8 +13,6 @@ import Typography from "@mui/material/Typography";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import EqualizerIcon from "@mui/icons-material/Equalizer";
-import { color, height, width } from "@mui/system";
-import { Box } from "@mui/material";
 import MapView from "../openLyres/MapView";
 import Rating from "@mui/material/Rating";
 import getToken from "../../utiles/getToken";
@@ -22,6 +20,7 @@ import getToken from "../../utiles/getToken";
 interface ProductProps {
   id: string;
   category_id: string;
+
   name: string;
   title: string;
   description: string;
@@ -65,7 +64,7 @@ const Product = () => {
       }
     };
     ProductData();
-  }, []);
+  }, [prams.id]);
 
   return (
     <div className="product_container">
