@@ -9,7 +9,7 @@ import CartPreview from "./components/cart/CartPreview";
 import Footer from "./components/Footer/Footer";
 import "./App.css";
 import Header from "./components/header/Header";
-
+import ProductComparison from "./components/productComparison/ProductComparison";
 function App() {
   return (
     <div className="appContainer">
@@ -21,6 +21,7 @@ function App() {
         <Route path="/product/:id" element={<Product />} />
         <Route path="/category/:id" element={<Products />} />
         <Route path="/cartPreview" element={<CartPreview />} />
+        <Route path="/ProductComparison" element={<ProductComparison />} />
       </Routes>
       <Footer />
     </div>

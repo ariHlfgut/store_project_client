@@ -2,7 +2,7 @@
 import { TextField, Button } from "@mui/material";
 import { TSignUpSchema, signUpSchema } from "../../lib/loginTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm, type FieldValues } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import React from "react";
@@ -13,13 +13,10 @@ export default function Login() {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-    reset,
     setError,
   } = useForm<TSignUpSchema>({
     resolver: zodResolver(signUpSchema),
   });
-
-  const [loginData, setLoginData] = React.useState<null | Object>({});
 
   const onSubmit = async (data: TSignUpSchema) => {
     try {
@@ -32,7 +29,11 @@ export default function Login() {
           },
         }
       );
-      if (!response.status) {
+
+      if (response.status === 200 && response.data.token) {
+        localStorage.setItem("token", response.data.token);
+        alert("Submitting form succeeded!");
+      } else {
         alert("Submitting form failed!");
         return;
       }
