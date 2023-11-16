@@ -17,6 +17,7 @@ import { color, height, width } from "@mui/system";
 import { Box } from "@mui/material";
 import MapView from "../openLyres/MapView";
 import Rating from "@mui/material/Rating";
+import getToken from "../../utiles/getToken";
 
 interface ProductProps {
   id: string;
@@ -46,8 +47,7 @@ const Product = () => {
   const [numberOfProducts, setNumberOfProducts] = useState(0);
   const prams = useParams();
 
-  const handleAddToCart = (event) => {
-    event.stopPropagation();
+  const handleAddToCart = () => {
     setNumberOfProducts(numberOfProducts + 1);
   };
 
@@ -55,7 +55,8 @@ const Product = () => {
     const ProductData = async () => {
       try {
         const response = await axios.get(
-          `https://api-service-store-projects.onrender.com/api/products/${prams.id}`
+          `https://api-service-store-projects.onrender.com/api/products/${prams.id}`,
+          { headers: { authorization: getToken() } }
         );
         setProductDetails(response.data);
         setValue(convertToRating(response.data.units_in_stock));
@@ -67,7 +68,7 @@ const Product = () => {
   }, []);
 
   return (
-    <Box className="flex-container">
+    <div className="product_container">
       <Card className="cards_container">
         <CardHeader
           title={`${productDetails?.name} , ${productDetails?.title}`}
@@ -80,7 +81,6 @@ const Product = () => {
             <Typography variant="body2" color="textSecondary" component="p">
               PRICE: {productDetails?.price}$
             </Typography>
-
             <Typography variant="body2" color="textSecondary" component="p">
               description: {productDetails?.description}
             </Typography>
@@ -104,7 +104,6 @@ const Product = () => {
             <Typography variant="body2" color="textSecondary" component="p">
               rate: {productDetails?.rate}
             </Typography>
-
             <Typography variant="body2" color="textSecondary" component="p">
               units_in_stock: {productDetails?.units_in_stock}
             </Typography>
@@ -125,16 +124,9 @@ const Product = () => {
         <IconButton aria-label="Comparison">
           <EqualizerIcon />
         </IconButton>
-        <Box
-          sx={{
-            "& > legend": { mt: 2 },
-          }}
-        >
-          <Rating name="simple-controlled" value={value} />
-        </Box>
       </Card>
       <MapView />
-    </Box>
+    </div>
   );
 };
 export default Product;

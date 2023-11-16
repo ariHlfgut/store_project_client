@@ -8,6 +8,7 @@ import { useContext } from "react";
 import { addIcon } from "./mapLyres";
 import axios from "axios";
 import StoreIcon from "@mui/icons-material/Store";
+import getToken from "../../utiles/getToken";
 
 interface StoreLocations {
   name: string;
@@ -35,8 +36,7 @@ export default function MapView() {
     const getStoreData = async () => {
       try {
         const response = await axios.get(
-          `https://api-service-store-projects.onrender.com/api/storeLocations`
-        );
+          `https://api-service-store-projects.onrender.com/api/storeLocations`, { headers: { "authorization": getToken() }});
         setStoreLocations(response.data);
       } catch (error) {
         console.log("error to fetch data", error);

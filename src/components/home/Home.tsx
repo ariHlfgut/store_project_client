@@ -6,13 +6,14 @@ import TopFiveProducts from "../topFive/topFiveProduct";
 
 export default function Home() {
   return (
-    <>
-      <Box>
-        <h1>home</h1>
-        <Categories />
-        <TopFiveCategory />
-        <TopFiveProducts />
-      </Box>
-    </>
+    <Box
+      className="home_container"
+      style={{ background: "rgb(199, 217, 233)" }}
+    >
+      <h1>home</h1>
+      <Categories />
+      <TopFiveCategory />
+      <TopFiveProducts />
+    </Box>
   );
 }
