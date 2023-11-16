@@ -1,27 +1,28 @@
 import React from "react";
-import Category from "./category";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import "./category.css";
-import getToken from "../../utiles/getToken";
+import "../categories/category.css";
+import Category from "../categories/category";
 
-interface CategoryType {
+interface ProductType {
   _id: string;
   name: string;
   img_url: string;
   count_click: number;
 }
-export default function Categories() {
+export default function TopFiveProducts() {
   const API_BASE_URL = "https://api-service-store-projects.onrender.com/api";
-  const [categories, setCategory] = useState<CategoryType[]>([]);
+  const [topProducts, setTopProducts] = useState<ProductType[]>([]);
 
   useEffect(() => {
     const ProductData = async () => {
       try {
-        const response = await axios.get(`${API_BASE_URL}/categories`, { headers: { "authorization": getToken() }});
+        const response = await axios.get(
+          `${API_BASE_URL}/products/topProducts`
+        );
         if (Array.isArray(response.data)) {
-          setCategory(response.data);
+          setTopProducts(response.data);
         } else {
           console.error("Invalid API response. Expected an array.");
         }
@@ -34,18 +35,19 @@ export default function Categories() {
 
   return (
     <div>
+      <h1>topCategories</h1>
       <div className="category_container">
-        {categories.map((category) => (
+        {topProducts.map((Product) => (
           <Link
-            key={category._id}
+            key={Product._id}
             className="navLink"
-            to={`/category/${category._id}`}
+            to={`/category/${Product._id}`}
           >
             <Category
-              id={category._id}
-              name={category.name}
-              img_url={category.img_url}
-              count_click={category.count_click}
+              id={Product._id}
+              name={Product.name}
+              img_url={Product.img_url}
+              count_click={Product.count_click}
             />
           </Link>
         ))}
