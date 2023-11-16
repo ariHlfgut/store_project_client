@@ -35,8 +35,7 @@ const Product = () => {
     const [numberOfProducts ,setNumberOfProducts] = useState(0)
     const prams = useParams();
 
-    const handleAddToCart = (event) => {
-        event.stopPropagation();
+    const handleAddToCart = () => {
         setNumberOfProducts(numberOfProducts + 1);
     };
 
@@ -55,6 +54,7 @@ const Product = () => {
     }, [])
 
     return (
+        <div className='product_container'>
         <Card className="cards_container" >
             <CardHeader 
                   title = {`${productDetails?.name} , ${productDetails?.title}`}
@@ -103,6 +103,7 @@ const Product = () => {
                 <EqualizerIcon />
             </IconButton>
         </Card> 
+        </div>
     )
 }
 export default Product
