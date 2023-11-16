@@ -28,17 +28,16 @@ interface ProductProps {
 export default function Products(props: ProductProps) {
   const [numberOfProducts, setNumberOfProducts] = useState(0);
 
-  const handleAddToCart = () => {
-    setNumberOfProducts(numberOfProducts + 1);
-  };
+
+  const handleAddToCart = (event) => {
+      event.stopPropagation();
+      setNumberOfProducts(numberOfProducts + 1);
+    };
 
   return (
-    <Card style={{ width: "300px", height: "450px", margin: "20px" }}>
+    <Card className='product_card'>
       <CardActionArea>
-        <CardMedia
-          image={props.img_url}
-          style={{ width: "300px", height: "250px" }}
-        />
+      <CardMedia image= {props.img_url}  className='img_card' />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {props.title}
