@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Products from "./ProductsView";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import "./productsMap.css";
 import getToken from "../../utiles/getToken";
@@ -21,6 +21,9 @@ interface ProductProps {
 }
 
 const ProductsFather = () => {
+
+  const navigate = useNavigate();
+
   const params = useParams();
   const [categoryProducts, setCategoryProducts] = useState<ProductProps[]>([]);
   const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
@@ -44,7 +47,7 @@ const ProductsFather = () => {
     const updatedSelectedProducts = [...selectedProducts, productId];
 
     if (updatedSelectedProducts.length === 2) {
-      window.location.href = "/productComparison";
+      navigate('/productComparison');
     }
 
     setSelectedProducts(updatedSelectedProducts);

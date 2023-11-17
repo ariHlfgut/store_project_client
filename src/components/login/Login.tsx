@@ -3,16 +3,18 @@ import { TextField, Button } from "@mui/material";
 import { TSignUpSchema, signUpSchema } from "../../lib/loginTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import React from "react";
 import "./login.css";
-
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import getToken from "../../utiles/getToken";
 
 export default function Login() {
+
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -37,13 +39,15 @@ export default function Login() {
 
       if (response.status === 200) {
         console.log(response);
-        if (response.data) {
-          localStorage.setItem("token", response.data);
+        if (response.data.token) {
+          localStorage.setItem("token", response.data.token);
+          localStorage.setItem("userId", response.data.user._id);
         }
+        // TODO Save User Obj in Redux
         toast("Login Successful!");
         setTimeout(() => {
-          window.location.href = "/";
-        }, 600);
+          navigate('/');
+        }, 1000);
       } else {
         alert("Submitting form failed!");
         return;
@@ -99,9 +103,9 @@ export default function Login() {
           LOGIN
         </Button>
         <p className="p">
-          you dont have account?
-          <Link className="sign" to={"/sign up"}>
-            sign up
+          You don't have account? 
+          <Link className="sign" to={"/signup"}>
+          Sign Up
           </Link>
         </p>
       </form>
