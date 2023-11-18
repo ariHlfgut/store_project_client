@@ -31,26 +31,24 @@ export default function Products(props: ProductProps) {
   const [isClickedEqualizer, setIsClickedEqualizer] = useState(false);
 
   const handleAddToCart = (event) => {
-      event.preventDefault();
-      setNumberOfProducts(numberOfProducts + 1);
-    };
+    event.preventDefault();
+    setNumberOfProducts(numberOfProducts + 1);
+  };
 
-    const handleStopFavorite = (event) => {
-      event.preventDefault();
-      setIsClickedFavorite(true);
-    }
+  const handleStopFavorite = (event) => {
+    event.preventDefault();
+    setIsClickedFavorite(true);
+  };
 
-    const handleStopEqualizer = (event) => {
-      event.preventDefault();
-      setIsClickedEqualizer(!isClickedEqualizer);
-    }
-   
-   
+  const handleStopEqualizer = (event) => {
+    event.preventDefault();
+    setIsClickedEqualizer(!isClickedEqualizer);
+  };
 
   return (
-    <Card className='product_card'>
+    <Card className="product_card">
       <CardActionArea>
-      <CardMedia image= {props.img_url}  className='img_card' />
+        <CardMedia image={props.img_url} className="img_card" />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {props.title}
@@ -61,19 +59,23 @@ export default function Products(props: ProductProps) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <IconButton aria-label="Add to Cart" onClick={handleAddToCart} >
+        <IconButton aria-label="Add to Cart" onClick={handleAddToCart}>
           <Badge badgeContent={numberOfProducts} color="secondary">
             <AddShoppingCartIcon />
           </Badge>
         </IconButton>
-        <IconButton aria-label="Add to Favorites" 
-         onClick={handleStopFavorite}
-         style={{ color: isClickedFavorite ? 'red' : 'inherit' }}>
+        <IconButton
+          aria-label="Add to Favorites"
+          onClick={handleStopFavorite}
+          style={{ color: isClickedFavorite ? "red" : "inherit" }}
+        >
           <FavoriteIcon />
         </IconButton>
-        <IconButton aria-label="Comparison"
+        <IconButton
+          aria-label="Comparison"
           onClick={handleStopEqualizer}
-          style={{ color: isClickedEqualizer ? 'blue' : 'inherit' }}>
+          style={{ color: isClickedEqualizer ? "blue" : "inherit" }}
+        >
           <EqualizerIcon />
         </IconButton>
       </CardActions>

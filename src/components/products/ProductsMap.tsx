@@ -29,8 +29,9 @@ const ProductsFather = () => {
     const fetchProductsByCategory = async () => {
       try {
         const response = await axios.get(
-          `https://api-service-store-projects.onrender.com/api/products/category/${params.id}`
-          , { headers: { "authorization": getToken() }});
+          `https://api-service-store-projects.onrender.com/api/products/category/${params.id}`,
+          { headers: { authorization: getToken() } }
+        );
         setCategoryProducts(response.data);
       } catch (error) {
         console.log("Error fetching products by category", error);
@@ -42,7 +43,7 @@ const ProductsFather = () => {
   const handleSelectProduct = (productId: string) => {
     const updatedSelectedProducts = [...selectedProducts, productId];
 
-    if (updatedSelectedProducts.length === 2) {
+    if (updatedSelectedProducts.length === 3) {
       window.location.href = "/productComparison";
     }
 
