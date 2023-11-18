@@ -13,7 +13,7 @@ import Typography from "@mui/material/Typography";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import EqualizerIcon from "@mui/icons-material/Equalizer";
-import MapView from "../openLyres/MapView";
+import Rating from "@mui/material/Rating";
 import getToken from "../../utiles/getToken";
 
 interface ProductProps {
@@ -122,8 +122,9 @@ const Product = () => {
         <IconButton aria-label="Comparison">
           <EqualizerIcon />
         </IconButton>
+        <br />
+        <Rating name="simple-controlled" value={value} />
       </Card>
-      <MapView />
     </div>
   );
 };
