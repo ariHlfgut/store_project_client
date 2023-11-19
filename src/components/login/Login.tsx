@@ -10,10 +10,17 @@ import "./login.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import getToken from "../../utiles/getToken";
+import { useSelector, useDispatch } from "react-redux";
+import { userIn } from "../../redux/features/loginUserSlice";
+import { log } from "console";
+import { RootState } from "../../redux/reduxStore";
 
 export default function Login() {
-
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const userRedux = useSelector(
+    (state: RootState) => state.loginUserSlice.userLogin
+  );
 
   const {
     register,
@@ -43,10 +50,11 @@ export default function Login() {
           localStorage.setItem("token", response.data.token);
           localStorage.setItem("userId", response.data.user._id);
         }
-        // TODO Save User Obj in Redux
+        dispatch(userIn(response.data.user));
+
         toast("Login Successful!");
         setTimeout(() => {
-          navigate('/');
+          navigate("/");
         }, 1000);
       } else {
         alert("Submitting form failed!");
@@ -103,9 +111,9 @@ export default function Login() {
           LOGIN
         </Button>
         <p className="p">
-          You don't have account? 
+          You don't have account?
           <Link className="sign" to={"/signup"}>
-          Sign Up
+            Sign Up
           </Link>
         </p>
       </form>

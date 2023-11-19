@@ -1,10 +1,10 @@
 .category_container {
   margin-top: 2rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
 }
 
 .category_card {
@@ -14,14 +14,18 @@
 }
 
 .img_card_category {
-    width: 11rem;
-    height: 11rem;
-    border-radius: 20%;
-    border: solid black 1px;
+  width: 11rem;
+  height: 11rem;
+  border-radius: 20%;
+  border: solid black 1px;
 }
 
 .img_card_category:hover {
   width: 12rem;
   height: 12rem;
-  transition: width 0.3s ease-in-out, height 0.3s ease-in-out; 
+  transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
+}
+.Top5 {
+  margin-top: 50px;
+  color: blue;
 }

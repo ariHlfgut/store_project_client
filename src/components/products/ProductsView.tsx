@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  addSelectedProduct,
-  clearSelectedProducts,
-} from "../../redux/features/selectedProductsSlice";
+import { addSelectedProduct } from "../../redux/features/selectedProductsSlice";
 import { RootState } from "../../redux/reduxStore";
 import Card from "@mui/material/Card";
 import CardActionArea from "@mui/material/CardActionArea";
