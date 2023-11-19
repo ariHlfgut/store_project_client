@@ -7,10 +7,13 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import React from "react";
 import "./login.css";
+import { useSelector, useDispatch } from 'react-redux'
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import getToken from "../../utiles/getToken";
+import { userIn } from "../../redux/features/loginUserSlice";
+import { RootState } from "../../redux/reduxStore";
 
 export default function Login() {
   const {
@@ -21,6 +24,8 @@ export default function Login() {
   } = useForm<TSignUpSchema>({
     resolver: zodResolver(signUpSchema),
   });
+  const dispatch = useDispatch()
+  const reduxUserId = useSelector((state: RootState) => state.loginUserSlice.userLogin)
 
   const onSubmit = async (data: TSignUpSchema) => {
     try {
@@ -41,6 +46,10 @@ export default function Login() {
         if (response.data) {
           localStorage.setItem("token", response.data);
         }
+        dispatch(userIn(response.data.user))
+        console.log(reduxUserId);
+        
+
         toast("Login Successful!");
         setTimeout(() => {
             window.location.href = "/";

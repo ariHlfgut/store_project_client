@@ -9,3 +9,21 @@ export interface User {
 export interface AuthState {
   userLogin: User | null;
 }
+export interface ProductTypes {
+  id: string;
+  category_id: string;
+  name: string;
+  title: string;
+  description: string;
+  price: number;
+  img_url: string;
+  units_in_stock: number;
+  rate: number;
+  count_clicks: number;
+  color: string;
+  model: string;
+}
+export interface CartState {
+  CartProducts: ProductTypes | null;
+}
+
