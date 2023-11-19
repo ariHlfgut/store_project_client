@@ -11,10 +11,7 @@ import { RootState } from "../../redux/reduxStore";
 
 export default function Home() {
   return (
-    <Box
-      className="home_container"
-      style={{ background: "rgb(199, 217, 233)" }}
-    >
+    <Box className="home_container" style={{ background: "what" }}>
       <Categories />
       <TopFiveCategory />
       <TopFiveProducts />

@@ -65,8 +65,8 @@ export default function Header() {
               </IconButton>
             </Link>
             {/* <Link to={"/login"}> */}
-              <LoginMenu/>
-              {/* <IconButton
+            <LoginMenu />
+            {/* <IconButton
                 size="large"
                 edge="end"
                 aria-label="account of current user"

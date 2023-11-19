@@ -32,7 +32,7 @@ export const loginUserSlice = createSlice({
 
       state.userLogin = user;
     },
-    userOutput: (state, action) => {
+    userOutput: (state) => {
       state.userLogin = null;
     },
   },

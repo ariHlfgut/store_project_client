@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addSelectedProduct } from "../../redux/features/selectedProductsSlice";
+import { RootState } from "../../redux/reduxStore";
 import Card from "@mui/material/Card";
 import CardActionArea from "@mui/material/CardActionArea";
 import CardActions from "@mui/material/CardActions";
@@ -10,9 +13,8 @@ import Badge from "@mui/material/Badge";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import EqualizerIcon from "@mui/icons-material/Equalizer";
-import { useState } from "react";
-import axios from "axios";
-import getToken from "../../utiles/getToken";
+import { useNavigate } from "react-router-dom";
+
 interface ProductProps {
   id: string;
   category_id: string;
@@ -28,62 +30,43 @@ interface ProductProps {
   model: string;
 }
 
-
-const API_BASE_URL = "https://api-service-store-projects.onrender.com/api";
-
-
-export default function Products(props: ProductProps) {
+const Products: React.FC<ProductProps> = (props) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const selectedProducts = useSelector(
+    (state: RootState) => state.selectedProducts.selectedProducts
+  );
   const [numberOfProducts, setNumberOfProducts] = useState(0);
   const [isClickedFavorite, setIsClickedFavorite] = useState(false);
   const [isClickedEqualizer, setIsClickedEqualizer] = useState(false);
 
+  const handleAddToCart = (event: React.MouseEvent) => {
+    event.preventDefault();
+    setNumberOfProducts(numberOfProducts + 1);
+  };
 
-  const handleAddToCart = async (event) => {
-      event.preventDefault();
-      setNumberOfProducts(numberOfProducts + 1);
-      try {
-      const config = {
-        method: 'post',
-        maxBodyLength: Infinity,
-        url: `${API_BASE_URL}/carts/addToCart`,
-        headers: { 
-          'Content-Type': 'application/json',
-          'authorization': getToken()
-        },
-        data : {
-          "user_id" : localStorage.getItem('userId'),
-          "products" : {
-            "product_id": props.id,
-            "units": numberOfProducts
+  const handleStopFavorite = (event: React.MouseEvent) => {
+    event.preventDefault();
+    setIsClickedFavorite(!isClickedFavorite);
+  };
+  const handleSelectProduct = () => {
+    dispatch(addSelectedProduct(props.id));
 
-          }
-        }
-      };
-        const response = await axios.request(config)
-        console.log(response);
-        
-      } catch (error) {
-        console.log(error);
-        
-      }
-    };
-
-    const handleStopFavorite = (event) => {
-      event.preventDefault();
-      setIsClickedFavorite(true);
+    if (selectedProducts.length === 2) {
+      navigate("/productComparison");
     }
+  };
 
-    const handleStopEqualizer = (event) => {
-      event.preventDefault();
-      setIsClickedEqualizer(!isClickedEqualizer);
-    }
-   
-   
+  const handleStopEqualizer = (event: React.MouseEvent) => {
+    event.preventDefault();
+    setIsClickedEqualizer(!isClickedEqualizer);
+    handleSelectProduct();
+  };
 
   return (
-    <Card className='product_card'>
+    <Card>
       <CardActionArea>
-      <CardMedia image= {props.img_url}  className='img_card' />
+        <CardMedia image={props.img_url} className="img_card" />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {props.title}
@@ -94,22 +77,28 @@ export default function Products(props: ProductProps) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <IconButton aria-label="Add to Cart" onClick={handleAddToCart} >
+        <IconButton aria-label="Add to Cart" onClick={handleAddToCart}>
           <Badge badgeContent={numberOfProducts} color="secondary">
             <AddShoppingCartIcon />
           </Badge>
         </IconButton>
-        <IconButton aria-label="Add to Favorites" 
-         onClick={handleStopFavorite}
-         style={{ color: isClickedFavorite ? 'red' : 'inherit' }}>
+        <IconButton
+          aria-label="Add to Favorites"
+          onClick={handleStopFavorite}
+          style={{ color: isClickedFavorite ? "red" : "inherit" }}
+        >
           <FavoriteIcon />
         </IconButton>
-        <IconButton aria-label="Comparison"
+        <IconButton
+          aria-label="Comparison"
           onClick={handleStopEqualizer}
-          style={{ color: isClickedEqualizer ? 'blue' : 'inherit' }}>
+          style={{ color: isClickedEqualizer ? "blue" : "inherit" }}
+        >
           <EqualizerIcon />
         </IconButton>
       </CardActions>
     </Card>
   );
-}
+};
+
+export default Products;
