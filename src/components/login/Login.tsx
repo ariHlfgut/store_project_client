@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import React from "react";
 import "./login.css";
+import { useSelector, useDispatch } from 'react-redux'
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import getToken from "../../utiles/getToken";
@@ -30,6 +31,8 @@ export default function Login() {
   } = useForm<TSignUpSchema>({
     resolver: zodResolver(signUpSchema),
   });
+  const dispatch = useDispatch()
+  const reduxUserId = useSelector((state: RootState) => state.loginUserSlice.userLogin)
 
   const onSubmit = async (data: TSignUpSchema) => {
     try {

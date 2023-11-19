@@ -12,11 +12,13 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import EqualizerIcon from "@mui/icons-material/Equalizer";
+import MapView from "../openLyres/MapView";
 import Rating from "@mui/material/Rating";
 import getToken from "../../utiles/getToken";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-interface ProductProps {
+export interface ProductProps {
   id: string;
   category_id: string;
   product;
@@ -31,6 +33,17 @@ interface ProductProps {
   color: string;
   model: string;
 }
+
+export interface ProductInCartInterface {
+  product_id: string
+  units: number;
+}
+
+export interface AddToCartInterface {
+  user_id: string
+  products: ProductInCartInterface;
+}
+
 function convertToRating(purchases: number): number {
   const scalingFactor: number = 150;
   const normalizedValue: number = Math.min(1, purchases / scalingFactor);
@@ -38,11 +51,11 @@ function convertToRating(purchases: number): number {
   return rating;
 }
 const Product = () => {
-  const [productDetails, setProductDetails] = useState<ProductProps | null>(
-    null
-  );
+
+  const [productDetails, setProductDetails] = useState<ProductProps | null>(null);
   const [value, setValue] = React.useState<number | null>(2);
   const [numberOfProducts, setNumberOfProducts] = useState(0);
+  const userId = localStorage.getItem('userId');
   const params = useParams();
 
   const handleAddToCart = () => {
@@ -65,6 +78,42 @@ const Product = () => {
     ProductData();
   }, [params.id]);
 
+  const handleAddToCart = async() => {
+    setNumberOfProducts((prevCount) => prevCount + 1);
+        try {
+          const config = {
+            method: 'post',
+            maxBodyLength: Infinity,
+            url: `https://api-service-store-projects.onrender.com/api/carts/addToCart`,
+            headers: { 
+              'Content-Type': 'application/json',
+              'authorization': getToken()
+            },
+            data : {
+              "user_id" : userId,
+              "products" : {
+                "product_id": prams.id,
+                "units": numberOfProducts 
+    
+              }
+            }
+          };
+          console.log(config.data)
+            const response = await axios.request(config)
+            console.log(response);
+          if (response.status === 200) {
+              toast('The product has been successfully added to the cart')
+          }
+          else {
+            toast('Error! We were unable to add a product to the cart')
+          }
+        }
+         catch (error) {
+          console.log("error to fetch data", error);
+        }
+        
+      };
+      
   return (
     <div className="product_container">
       <Card className="cards_container">
@@ -119,12 +168,11 @@ const Product = () => {
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
-        <IconButton aria-label="Comparison">
-          <EqualizerIcon />
-        </IconButton>
         <br />
         <Rating name="simple-controlled" value={value} />
       </Card>
+      <ToastContainer />
+      <MapView />
     </div>
   );
 };
