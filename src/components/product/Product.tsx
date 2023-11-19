@@ -19,7 +19,7 @@ import getToken from "../../utiles/getToken";
 interface ProductProps {
   id: string;
   category_id: string;
-
+  product;
   name: string;
   title: string;
   description: string;
@@ -43,7 +43,7 @@ const Product = () => {
   );
   const [value, setValue] = React.useState<number | null>(2);
   const [numberOfProducts, setNumberOfProducts] = useState(0);
-  const prams = useParams();
+  const params = useParams();
 
   const handleAddToCart = () => {
     setNumberOfProducts(numberOfProducts + 1);
@@ -53,7 +53,7 @@ const Product = () => {
     const ProductData = async () => {
       try {
         const response = await axios.get(
-          `https://api-service-store-projects.onrender.com/api/products/${prams.id}`,
+          `https://api-service-store-projects.onrender.com/api/products/${params.id}`,
           { headers: { authorization: getToken() } }
         );
         setProductDetails(response.data);
@@ -63,7 +63,7 @@ const Product = () => {
       }
     };
     ProductData();
-  }, [prams.id]);
+  }, [params.id]);
 
   return (
     <div className="product_container">

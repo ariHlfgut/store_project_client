@@ -21,12 +21,10 @@ interface ProductProps {
 }
 
 const ProductsFather = () => {
-
   const navigate = useNavigate();
 
   const params = useParams();
   const [categoryProducts, setCategoryProducts] = useState<ProductProps[]>([]);
-  const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
 
   useEffect(() => {
     const fetchProductsByCategory = async () => {
@@ -43,24 +41,10 @@ const ProductsFather = () => {
     fetchProductsByCategory();
   }, [params.id]);
 
-  const handleSelectProduct = (productId: string) => {
-    const updatedSelectedProducts = [...selectedProducts, productId];
-
-    if (updatedSelectedProducts.length === 2) {
-      navigate('/productComparison');
-    }
-
-    setSelectedProducts(updatedSelectedProducts);
-    localStorage.setItem(
-      "selectedProducts",
-      JSON.stringify(updatedSelectedProducts)
-    );
-  };
-
   return (
     <div className="container_products">
       {categoryProducts.map((product) => (
-        <div key={product._id} className="product-container">
+        <div key={product._id} className="product">
           <Link className="navLink" to={`/product/${product._id}`}>
             <Products
               id={product._id}
@@ -77,12 +61,6 @@ const ProductsFather = () => {
               model={product.model}
             />
           </Link>
-          <button
-            onClick={() => handleSelectProduct(product._id)}
-            className={selectedProducts.includes(product._id) ? "selected" : ""}
-          >
-            {selectedProducts.includes(product._id) ? "Selected" : "Select"}
-          </button>
         </div>
       ))}
     </div>
