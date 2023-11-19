@@ -13,6 +13,8 @@ import EqualizerIcon from "@mui/icons-material/Equalizer";
 import { useState } from "react";
 import axios from "axios";
 import getToken from "../../utiles/getToken";
+// import { ProductFilter } from "../Filters/ProductFilter";
+
 interface ProductProps {
   id: string;
   category_id: string;
@@ -28,62 +30,54 @@ interface ProductProps {
   model: string;
 }
 
-
 const API_BASE_URL = "https://api-service-store-projects.onrender.com/api";
-
 
 export default function Products(props: ProductProps) {
   const [numberOfProducts, setNumberOfProducts] = useState(0);
   const [isClickedFavorite, setIsClickedFavorite] = useState(false);
   const [isClickedEqualizer, setIsClickedEqualizer] = useState(false);
 
-
   const handleAddToCart = async (event) => {
-      event.preventDefault();
-      setNumberOfProducts(numberOfProducts + 1);
-      try {
+    event.preventDefault();
+    setNumberOfProducts(numberOfProducts + 1);
+    try {
       const config = {
-        method: 'post',
+        method: "post",
         maxBodyLength: Infinity,
         url: `${API_BASE_URL}/carts/addToCart`,
-        headers: { 
-          'Content-Type': 'application/json',
-          'authorization': getToken()
+        headers: {
+          "Content-Type": "application/json",
+          authorization: getToken(),
         },
-        data : {
-          "user_id" : localStorage.getItem('userId'),
-          "products" : {
-            "product_id": props.id,
-            "units": numberOfProducts
-
-          }
-        }
+        data: {
+          user_id: localStorage.getItem("userId"),
+          products: {
+            product_id: props.id,
+            units: numberOfProducts,
+          },
+        },
       };
-        const response = await axios.request(config)
-        console.log(response);
-        
-      } catch (error) {
-        console.log(error);
-        
-      }
-    };
-
-    const handleStopFavorite = (event) => {
-      event.preventDefault();
-      setIsClickedFavorite(true);
+      const response = await axios.request(config);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
     }
+  };
 
-    const handleStopEqualizer = (event) => {
-      event.preventDefault();
-      setIsClickedEqualizer(!isClickedEqualizer);
-    }
-   
-   
+  const handleStopFavorite = (event) => {
+    event.preventDefault();
+    setIsClickedFavorite(true);
+  };
+
+  const handleStopEqualizer = (event) => {
+    event.preventDefault();
+    setIsClickedEqualizer(!isClickedEqualizer);
+  };
 
   return (
-    <Card className='product_card'>
+    <Card className="product_card">
       <CardActionArea>
-      <CardMedia image= {props.img_url}  className='img_card' />
+        <CardMedia image={props.img_url} className="img_card" />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {props.title}
@@ -94,22 +88,27 @@ export default function Products(props: ProductProps) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <IconButton aria-label="Add to Cart" onClick={handleAddToCart} >
+        <IconButton aria-label="Add to Cart" onClick={handleAddToCart}>
           <Badge badgeContent={numberOfProducts} color="secondary">
             <AddShoppingCartIcon />
           </Badge>
         </IconButton>
-        <IconButton aria-label="Add to Favorites" 
-         onClick={handleStopFavorite}
-         style={{ color: isClickedFavorite ? 'red' : 'inherit' }}>
+        <IconButton
+          aria-label="Add to Favorites"
+          onClick={handleStopFavorite}
+          style={{ color: isClickedFavorite ? "red" : "inherit" }}
+        >
           <FavoriteIcon />
         </IconButton>
-        <IconButton aria-label="Comparison"
+        <IconButton
+          aria-label="Comparison"
           onClick={handleStopEqualizer}
-          style={{ color: isClickedEqualizer ? 'blue' : 'inherit' }}>
+          style={{ color: isClickedEqualizer ? "blue" : "inherit" }}
+        >
           <EqualizerIcon />
         </IconButton>
       </CardActions>
+      {/* <ProductFilter products={props} /> */}
     </Card>
   );
 }

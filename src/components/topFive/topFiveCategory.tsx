@@ -51,6 +51,7 @@ export default function TopFiveCategory() {
   // }
   return (
     <div>
+      <h1 className="Top5">Top 5 Categories</h1>
       <div className="category_container">
         {topCategories.map((category) => (
           <Link
