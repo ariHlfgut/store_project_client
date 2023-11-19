@@ -1,19 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "./ProductComparison.css";
+import { RootState } from "../../redux/reduxStore";
+import { clearSelectedProducts } from "../../redux/features/selectedProductsSlice";
 
 const ProductComparison = () => {
-  const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
-  const [productDetails, setProductDetails] = useState<any[]>([]);
+  const dispatch = useDispatch();
+  const selectedProducts = useSelector(
+    (state: RootState) => state.selectedProducts.selectedProducts
+  );
+  const [productDetails, setProductDetails] = React.useState<any[]>([]);
 
   useEffect(() => {
-    const storedProducts = JSON.parse(
-      localStorage.getItem("selectedProducts") || "[]"
-    );
-    setSelectedProducts(storedProducts);
-
     const fetchProductDetails = async () => {
       try {
-        const productPromises = storedProducts.map((productId: string) =>
+        const productPromises = selectedProducts.map((productId: string) =>
           fetch(
             `https://api-service-store-projects.onrender.com/api/products/${productId}`
           ).then((response) => response.json())
@@ -26,8 +27,18 @@ const ProductComparison = () => {
       }
     };
 
-    fetchProductDetails();
-  }, []);
+    if (selectedProducts.length > 0) {
+      fetchProductDetails();
+    } else {
+      setProductDetails([]);
+    }
+  }, [dispatch, selectedProducts]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearSelectedProducts());
+    };
+  }, [dispatch]);
 
   return (
     <div className="container">
@@ -40,10 +51,7 @@ const ProductComparison = () => {
           <p>{`Rate: ${product.rate}`}</p>
           <p>{`Clicks: ${product.count_clicks}`}</p>
           <p>{`Color: ${product.color}`}</p>
-          <p>{`Model: ${product.model}`}</p>
-          <button className="selected-button">
-            {selectedProducts.includes(product._id) ? "Selected" : "Select"}
-          </button>
+          <p>{`Model: ${product.model}`}</p>{" "}
         </div>
       ))}
     </div>
