@@ -3,19 +3,21 @@ import { TextField, Button } from "@mui/material";
 import { TSignUpSchema, signUpSchema } from "../../lib/loginTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import React from "react";
 import "./login.css";
 import { useSelector, useDispatch } from 'react-redux'
-
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import getToken from "../../utiles/getToken";
 import { userIn } from "../../redux/features/loginUserSlice";
 import { RootState } from "../../redux/reduxStore";
 
 export default function Login() {
+
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -35,28 +37,26 @@ export default function Login() {
         {
           headers: {
             "Content-Type": "application/json",
-            "authorization": getToken()
+            authorization: getToken(),
           },
         }
       );
 
-      
       if (response.status === 200) {
         console.log(response);
-        if (response.data) {
-          localStorage.setItem("token", response.data);
+        if (response.data.token) {
+          localStorage.setItem("token", response.data.token);
+          localStorage.setItem("userId", response.data.user._id);
         }
+
         dispatch(userIn(response.data.user))
         console.log(reduxUserId);
-        
 
         toast("Login Successful!");
         setTimeout(() => {
-            window.location.href = "/";
-        }, 600);
-      }
-      else {
-
+          navigate('/');
+        }, 1000);
+      } else {
         alert("Submitting form failed!");
         return;
       }
@@ -85,36 +85,39 @@ export default function Login() {
   };
 
   return (
-    <><form onSubmit={handleSubmit(onSubmit)} className="loginForm">
-      <div className="fieldContainer">
-        <TextField
-          className="loginField"
-          label="Email"
-          {...register("email")} />
-        {errors.email && (
-          <p className="loginError">{`${errors.email.message}`}</p>
-        )}
-      </div>
-      <div className="fieldContainer">
-        <TextField
-          className="loginField"
-          label="Password"
-          {...register("password")} />
-        {errors.password && (
-          <p className="loginError">{`${errors.password.message}`}</p>
-        )}
-      </div>
-      <Button disabled={isSubmitting} type="submit" variant="contained">
-        LOGIN
-      </Button>
-      <p className="p">
-        you dont have account?{" "}
-        <Link className="sign" to={"/sign up"}>
-          sign up
-        </Link>
-      </p>
-    </form>
-    <ToastContainer />
+    <>
+      <form onSubmit={handleSubmit(onSubmit)} className="loginForm">
+        <div className="fieldContainer">
+          <TextField
+            className="loginField"
+            label="Email"
+            {...register("email")}
+          />
+          {errors.email && (
+            <p className="loginError">{`${errors.email.message}`}</p>
+          )}
+        </div>
+        <div className="fieldContainer">
+          <TextField
+            className="loginField"
+            label="Password"
+            {...register("password")}
+          />
+          {errors.password && (
+            <p className="loginError">{`${errors.password.message}`}</p>
+          )}
+        </div>
+        <Button disabled={isSubmitting} type="submit" variant="contained">
+          LOGIN
+        </Button>
+        <p className="p">
+          You don't have account? 
+          <Link className="sign" to={"/signup"}>
+          Sign Up
+          </Link>
+        </p>
+      </form>
+      <ToastContainer />
     </>
   );
 }

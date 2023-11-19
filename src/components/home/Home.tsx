@@ -15,7 +15,6 @@ export default function Home() {
       className="home_container"
       style={{ background: "rgb(199, 217, 233)" }}
     >
-      <h1>home</h1>
       <Categories />
       <TopFiveCategory />
       <TopFiveProducts />

@@ -1,27 +1,27 @@
 .category_container {
-    margin-left: 20px;
+  margin-top: 2rem;
     display: flex;
     flex-direction: row;
-    gap: 10px;
+    justify-content: center;
+    gap: 15px;
     flex-wrap: wrap;
-    
 }
 
 .category_card {
   width: 200px;
   height: 200px;
-  margin: 20px;
+  margin: 20px 20px 30px 20px;
 }
 
 .img_card_category {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
+    width: 11rem;
+    height: 11rem;
+    border-radius: 20%;
     border: solid black 1px;
 }
 
 .img_card_category:hover {
-  width: 170px;
-  height: 170px;
+  width: 12rem;
+  height: 12rem;
   transition: width 0.3s ease-in-out, height 0.3s ease-in-out; 
 }

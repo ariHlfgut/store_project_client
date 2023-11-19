@@ -1,14 +1,13 @@
-
-.product_container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgb(199, 217, 233);
+.product_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(199, 217, 233);
 }
 .cards_container {
-    width: 800px;
-    height: 550px;
-    margin: 20px;
+  width: 800px;
+  height: 550px;
+  margin: 20px;
 }
 
 .img_div {
@@ -20,5 +19,3 @@
   height: 200px;
   width: 400px;
 }
-
-

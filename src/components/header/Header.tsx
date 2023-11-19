@@ -5,12 +5,11 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import ShoppingCartSharpIcon from "@mui/icons-material/ShoppingCartSharp";
-import AccountCircle from "@mui/icons-material/AccountCircle";
 import HomeIcon from "@mui/icons-material/Home";
 import { Link } from "react-router-dom";
-
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import LoginMenu from "../loginMenu/loginMenu";
 export default function Header() {
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -32,6 +31,17 @@ export default function Header() {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
+            <Link to={"/storeLocation"}>
+              <IconButton
+                className="icon"
+                color="inherit"
+                aria-label="shopping cart"
+                aria-haspopup="true"
+                size="large"
+              >
+                <LocationOnIcon sx={{ color: "white" }} />
+              </IconButton>
+            </Link>
             <Link to={"/"}>
               <IconButton
                 className="icon"
@@ -54,17 +64,17 @@ export default function Header() {
                 <ShoppingCartSharpIcon sx={{ color: "white" }} />
               </IconButton>
             </Link>
-            <Link to={"/login"}>
-              <IconButton
+            {/* <Link to={"/login"}> */}
+              <LoginMenu/>
+              {/* <IconButton
                 size="large"
                 edge="end"
                 aria-label="account of current user"
                 aria-haspopup="true"
-                color="inherit"
-              >
+                color="inherit">
                 <AccountCircle className="icon" sx={{ color: "white" }} />
-              </IconButton>
-            </Link>
+              </IconButton> */}
+            {/* </Link> */}
           </Box>
         </Toolbar>
       </AppBar>

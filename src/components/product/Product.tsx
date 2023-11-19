@@ -15,9 +15,6 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import MapView from "../openLyres/MapView";
 import Rating from "@mui/material/Rating";
 import getToken from "../../utiles/getToken";
-import { useSelector, useDispatch } from 'react-redux'
-import { RootState } from "../../redux/reduxStore";
-import { response } from "express";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -167,6 +164,8 @@ const Product = () => {
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
+        <br />
+        <Rating name="simple-controlled" value={value} />
       </Card>
       <ToastContainer />
       <MapView />
